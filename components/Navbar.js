@@ -1,6 +1,12 @@
 const Navbar = () => (
-  <nav className='flex items-center text-lg bg-white box-content font-bold md:px-40 px-10 h-12'>
-    <h1>Novas</h1>
+  <nav className='flex items-center text-lg bg-white box-content font-bold px-5 h-12'>
+    <div className=''>
+      <h1>
+        <a href='/'>
+          Novas
+        </a>
+      </h1>
+    </div>
   </nav>
 )
 
