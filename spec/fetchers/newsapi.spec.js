@@ -1,4 +1,7 @@
-import { toDateText } from '../../fetchers/articles.preval.js'
+import {
+  toDateText,
+  deleteSourceFromTitle
+} from '../../fetchers/newsapi/utils.js'
 
 describe('NewsAPI JSON article to Article object', () => {
   it('Converts date properly', () => {
@@ -10,5 +13,16 @@ describe('NewsAPI JSON article to Article object', () => {
 
     expect(date).toBe('February 16, 2021')
     expect(date2).toBe('February 15, 2021')
+  })
+
+  it('Deletes source at the end of title', () => {
+    const sample = 'Blablablabla - Fox News'
+    const sample2 = 'Blablabla - Blablabla --- Blablabla - Blabla - Fox News'
+  
+    const noSource = deleteSourceFromTitle(sample)
+    const noSource2 = deleteSourceFromTitle(sample2)
+
+    expect(noSource).toBe('Blablablabla')
+    expect(noSource2).toBe('Blablabla - Blablabla --- Blablabla - Blabla')
   })
 })

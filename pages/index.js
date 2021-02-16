@@ -1,4 +1,3 @@
-import NewsAPI from 'newsapi'
 import Navbar from '../components/Navbar.js'
 import Headline from '../components/Headline.js'
 import HugeHeadline from '../components/HugeHeadline.js'
@@ -50,7 +49,7 @@ const Home = () => {
         <div className='flex flex-wrap justify-center mt-5 gap-5'>
           {
             articles.latest
-              .slice(3, 6)
+              .slice(3)
               .map(a => <SmallArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />)
           }
         </div>
@@ -65,7 +64,7 @@ const Home = () => {
         <div className='flex flex-wrap gap-5 mt-5'>
           {
             articles.covid
-              .slice(1, 3)
+              .slice(1)
               .map(a => (
                   <MediumArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />
               ))
@@ -81,7 +80,7 @@ const Home = () => {
         <div className='flex flex-wrap gap-5 mt-5'>
           {
             articles.entertainment
-              .slice(1, 3)
+              .slice(1)
               .map(a => (
                   <MediumArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />
               ))
