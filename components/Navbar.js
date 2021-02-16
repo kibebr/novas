@@ -1,6 +1,6 @@
 const Navbar = () => (
-  <nav className='flex items-center text-lg bg-white box-content font-bold px-5 h-12'>
-    <div className=''>
+  <nav className='m-0auto flex bg-white items-center text-2xl box-content font-bold px-5 h-12'>
+    <div className='max-w-screen-lg m-0auto w-full'>
       <h1>
         <a href='/'>
           Novas

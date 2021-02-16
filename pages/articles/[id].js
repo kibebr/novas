@@ -27,17 +27,18 @@ const Article = ({ article }) => {
 export async function getStaticProps ({ params }) {
   return {
     props: {
-      article: articles.articles.find(({ id }) => id === params.id)
+      article: articles.all.find(({ id }) => id === params.id)
     }
   }
 }
 
 export async function getStaticPaths () {
+  const allArticlesIds = Object
+    .values(articles.all)
+    .map(({ id }) => id)
+
   return {
-    paths: [
-      { params: { id: '10' } },
-      { params: { id: '11' } }
-    ],
+    paths: allArticlesIds.map(id => ({ params: { id } })),
     fallback: false
   }
 }

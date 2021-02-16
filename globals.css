@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-  .h-500px {
-    height: 500px;
-  }
-
-  .m-0auto {
-    margin: 0 auto;
+  .bg-blur {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: saturate(180%) blur(20px);
   }
 }

@@ -1,11 +1,11 @@
-const Headline = ({ title, category, date }) => {
+const Headline = ({ title, category, date, imgUrl }) => {
   
   const style = {
-    backgroundImage: `url(https://i.gadgets360cdn.com/large/dogecoin_bloomberg_1613366194851.jpg)`
+    backgroundImage: `url(${imgUrl})`
   }
 
   return (
-    <div style={style} className='flex bg-cover text-white headline-h h-500px md:h-96 rounded w-full'>
+    <div style={style} className='flex hover:bg-contain bg-cover text-white headline-h h-600px md:h-96 rounded w-full'>
       <div className='self-end bg-gradient-to-t from-black w-full p-7'>
         <span className='font-bold text-sm'>
           {category}
