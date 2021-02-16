@@ -34,7 +34,7 @@ export const toDateText = (date) => {
 
 export const toArticle = (res) => ({
   id: shortid.generate(),
-  title: res.title,
+  title: deleteSourceFromTitle(res.title),
   date: toDateText(res.publishedAt),
   imgUrl: res.urlToImage,
   category: 'NULL'

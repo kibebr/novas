@@ -1,26 +1,9 @@
 import NewsAPI from 'newsapi'
 import { 
   toArticle,
-  toDateText
-  deleteSourceFromTitle
 } from './utils.js'
 
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY)
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-]
 
 export const getArticles = async () => {
   const latest = await newsapi.v2.topHeadlines({
