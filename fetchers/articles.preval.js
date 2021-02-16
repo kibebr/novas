@@ -1,5 +1,26 @@
 import preval from 'next-plugin-preval'
 
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
+export const toDateText = (date) => {
+  const year = date.slice(0, 4)
+  const month = Number(date.slice(6, 7))
+  const day = date.slice(8, 10)
+  return `${months[month - 1]} ${day}, ${year}`
+}
+
 const getArticles = async () => {
   const latest = [
     {

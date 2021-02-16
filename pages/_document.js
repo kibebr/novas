@@ -8,7 +8,7 @@ class MyDocument extends Document {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <title>Novas</title>
         </Head>
-        <body className='bg-gray-100 antialiased text-black'>
+        <body className='bg-white antialiased text-black'>
           <Main />
           <NextScript />
         </body>

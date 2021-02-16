@@ -14,17 +14,19 @@ module.exports = {
       },
       minWidth: {
         '64': '16rem'
+      },
+      colors: {
+        'pink-shock': '#FD345A',
+        'green-shock': '#35FD96'
       }
     },
     colors: {
       ...defaultTheme.colors,
-      red: 'rgb(255, 59, 48)',
       black: '#111'
     }
   },
   variants: {
     extend: {},
   },
-  plugins: [],
-  important: true
+  plugins: []
 }

@@ -6,7 +6,7 @@ const Category = () => {
   return (
     <div>
       <Navbar />
-      <div className='px-5 bg-red'>
+      <div className='px-5 bg-pink-shock'>
         <CenteredContainer>
           <div className='h-14 flex items-center'>
             <h2 className='font-bold text-3xl'>Entertainment</h2>
