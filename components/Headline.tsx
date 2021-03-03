@@ -1,7 +1,12 @@
-import React from 'react'
+import { FunctionComponent } from 'react'
 import Image from 'next/image'
+import { Article } from '../pages/index'
 
-export const Headline = ({ article }) => {
+interface HeadlineProps {
+  article: Article
+}
+
+export const Headline: FunctionComponent<HeadlineProps> = ({ article }) => {
   return (
     <a href={`/articles/${article.id}`} className='relative'>
       <div className='w-full h-128 bg-center bg-cover'>

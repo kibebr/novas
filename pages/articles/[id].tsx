@@ -1,8 +1,12 @@
+import {
+  GetStaticProps,
+  GetStaticPaths
+} from 'next'
 import { Header } from '../../components/Header.js'
 import Image from 'next/image'
 import articles from '../../fetchers/articles.preval'
 
-const Article = ({ article }) => {
+export default function Article ({ article }): JSX.Element {
   return (
     <div className='py-16'>
       <Header borderColor='border-purple-700' />
@@ -22,11 +26,11 @@ const Article = ({ article }) => {
 
         <article className='mt-5'>
           <div>
-            <Image 
+            <Image
               src='https://futurism.com/_next/image?url=https%3A%2F%2Fwp-assets.futurism.com%2F2020%2F06%2Fsom-sleep-aid-drink.jpg&w=1080&q=75'
-              width='1080' 
-              height='600' 
-              layout='responsive' 
+              width='1080'
+              height='600'
+              layout='responsive'
             />
           </div>
           <div className='font-serif text-lg mt-10 text-gray-900 tracking-wide'>
@@ -42,15 +46,15 @@ const Article = ({ article }) => {
   )
 }
 
-export async function getStaticProps ({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
-      article: articles.all.find(({ id }) => id === params.id)
+      article: params?.id === undefined ? null : articles.all.find(({ id }) => id === params.id)
     }
   }
 }
 
-export async function getStaticPaths () {
+export const getStaticPaths: GetStaticPaths = async () => {
   const allArticlesIds = Object
     .values(articles.all)
     .map(({ id }) => id)
@@ -60,5 +64,3 @@ export async function getStaticPaths () {
     fallback: false
   }
 }
-
-export default Article

@@ -5,13 +5,17 @@ import { ArticleCard } from '../../components/ArticleCard.js'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-const findArticles = () => [{}, {}]
+interface Article {
+  title: string
+}
 
-export default function Search () {
+const findArticles = (): Article[] => [{ title: 'article' }, { title: 'article2' }]
+
+export default function Search (): JSX.Element {
   const router = useRouter()
   const { q } = router.query
-  const [foundArticles, setFoundArticles] = useState([])
-  const [query, setQuery] = useState(q)
+  const [foundArticles, setFoundArticles] = useState<Article[]>([])
+  const [query, setQuery] = useState<string | undefined>('')
 
   useEffect(() => {
     if (query === undefined) {
@@ -25,7 +29,7 @@ export default function Search () {
     console.log('query changed: ', query)
   }, [query])
 
-  const search = (query) => {
+  const search = (query: string): void => {
 
   }
 
@@ -38,10 +42,10 @@ export default function Search () {
             <div className='mt-10'></div>
 
             <div className='text-center'>
-              <input 
-                placeholder='Search for articles' 
-                className='text-center font-bold text-5xl md:text-6xl w-full' 
-                onChange={(e) => setQuery(e.target.value)}
+              <input
+                placeholder='Search for articles'
+                className='text-center font-bold text-5xl md:text-6xl w-full'
+                onChange={(e): void => setQuery(e.target.value)}
                 
               />
 

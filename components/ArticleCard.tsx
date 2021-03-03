@@ -1,6 +1,11 @@
-import React from 'react'
+import { FunctionComponent } from 'react'
+import { Article } from '../pages/index'
 
-export const ArticleCard = ({ article }) => {
+interface ArticleCardProps {
+  article: Article
+}
+
+export const ArticleCard: FunctionComponent<ArticleCardProps> = ({ article }) => {
   return (
     <div className='flex flex-row'>
       <div className='w-56 h-40 border border-purple-700 mr-4'>
@@ -16,4 +21,3 @@ export const ArticleCard = ({ article }) => {
     </div>
   )
 }
-

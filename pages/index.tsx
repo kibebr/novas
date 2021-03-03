@@ -1,11 +1,16 @@
-import { Header } from '../components/Header.js'
-import { ArticleCard } from '../components/ArticleCard.js'
-import { Headline } from '../components/Headline.js'
-import { Container } from '../components/Container.js'
-import { Footer } from '../components/Footer.js'
+import { Header } from '../components/Header'
+import { ArticleCard } from '../components/ArticleCard'
+import { Headline } from '../components/Headline'
+import { Container } from '../components/Container'
+import { Footer } from '../components/Footer'
 import articles from '../fetchers/articles.preval'
 
-export default function Home () {
+export interface Article {
+  id: string
+  title: string
+}
+
+export default function Home (): JSX.Element {
   return (
     <div>
       <Header borderColor={'border-black'} />

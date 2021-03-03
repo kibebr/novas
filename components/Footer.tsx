@@ -1,7 +1,7 @@
-import React from 'react'
-import { Container } from './Container.js'
+import { FunctionComponent } from 'react'
+import { Container } from './Container'
 
-export const Footer = () => (
+export const Footer: FunctionComponent = () => (
   <footer className='h-24 bg-purple-700 text-white p-4'>
     <Container>
       <div>
