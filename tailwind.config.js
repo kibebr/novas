@@ -5,24 +5,20 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      margin: {
-        '0auto': '0 auto'
-      },
-      height: {
-        '500px': '500px',
-        '600px': '600px'
-      },
-      minWidth: {
-        '64': '16rem'
+      fontFamily: {
+        serif: ['Domine', ...defaultTheme.fontFamily.serif],
+        caps: 'Oswald'
       },
       colors: {
-        'pink-shock': '#FD345A',
-        'green-shock': '#35FD96'
+        black: {
+          DEFAULT: '#000',
+          light: '#111'
+        }
+      },
+      height: {
+        '112': '28rem',
+        '128': '32rem'
       }
-    },
-    colors: {
-      ...defaultTheme.colors,
-      black: '#111'
     }
   },
   variants: {

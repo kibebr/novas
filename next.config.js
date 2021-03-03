@@ -1,5 +1,31 @@
 // next.config.js
 const createNextPluginPreval = require('next-plugin-preval/config');
 const withNextPluginPreval = createNextPluginPreval();
+const withPlugins = require('next-compose-plugins')
+const optimizedImages = require('next-optimized-images')
 
-module.exports = withNextPluginPreval();
+const nextConfig = {
+  webpack: config => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      loader: '@svgr/webpack',
+      options: {
+        ref: true,
+        icon: true
+      }
+    })
+
+    return config
+  },
+  images: {
+    domains: ['futurism.com', '*']
+  }
+}
+
+module.exports = withNextPluginPreval(
+  withPlugins([[
+    optimizedImages, {
+      handleImages: ['jpeg', 'png', 'webp']
+    }
+  ]], nextConfig)
+)

@@ -1,24 +1,16 @@
-const Headline = ({ title, category, date, imgUrl }) => {
-  
-  const style = {
-    backgroundImage: `url(${imgUrl})`
-  }
+import React from 'react'
+import Image from 'next/image'
 
+export const Headline = ({ article }) => {
   return (
-    <div style={style} className='flex hover:bg-contain bg-cover text-white headline-h h-600px md:h-96 rounded w-full'>
-      <div className='self-end bg-gradient-to-t from-black w-full p-7'>
-        <span className='font-bold text-sm'>
-          {category}
-        </span>
-        <h2 className='font-bold text-2xl'>
-          {title}
-        </h2>
-        <span className='font-bold text-sm'>
-          {date}
-        </span>
+    <a href={`/articles/${article.id}`} className='relative'>
+      <div className='w-full h-128 bg-center bg-cover'>
+        <div className='flex flex-col text-center items-center justify-evenly h-full w-full bg-opacity-60 bg-black relative z-1'>
+          <span className='text-white text-sm tracking-widest'>SCIENCE | FEB, 19TH</span>
+          <h2 className='text-white font-bold text-5xl font-serif hover:underline'>{article.title}</h2>
+          <span className='text-white font-bold text-2xl'>Maybe that's just what the future holds for us.</span>
+        </div>
       </div>
-    </div>
+    </a>
   )
 }
-
-export default Headline

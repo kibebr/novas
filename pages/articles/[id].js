@@ -1,25 +1,43 @@
-import Navbar from '../../components/Navbar.js'
+import { Header } from '../../components/Header.js'
+import Image from 'next/image'
 import articles from '../../fetchers/articles.preval'
 
 const Article = ({ article }) => {
   return (
-    <div className='bg-white h-screen'>
-      <Navbar />
-      <section className='md:px-46 px-10 py-10'>
-        <div className='max-w-screen-2xl m-0auto outline-black'>
-          <div className='text-center tracking-wider leading-5'>
-            <p className='font-bold text-sm text-gray-500 mb-5'>
-              FEATURE&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;February 16, 2021
-            </p>
-            <h1 className='font-bold text-3xl md:text-5xl'>{article.title}</h1>
-          </div>
-          <p className='w-6/12 leading-6 tracking-tight'>
-            “Coding is a mesh between the logical and the creative, because the act of writing code can also be like writing poetry or something else,” Thomas says. “You’re also actually building something when you code, so it’s a really creative process.”
-            Thomas, who is both an iOS developer for the meditation app Calm and an independent app developer in the App Store, launched We Read Too in 2014 to bridge a gap in literature she noticed as a teenager.
-            “I was going to the library and bookstores and book fairs in school, and I would see a very specific set of books,” Thomas says. “By the time I got to high school, I started to get really frustrated wondering why there weren’t any books that I was being exposed to that had Black characters, or were by Black authors. I started doing my own research and realised that those books existed — they just weren’t on bestseller lists, or displayed in the library or at the bookstore.”
+    <div className='py-16'>
+      <Header borderColor='border-purple-700' />
+      <div className='max-w-screen-lg m-0 m-auto px-4 mt-5'>
+        <div className='text-sm font-bold'>
+          <span className='text-purple-700 border-r border-purple-700 pr-2'>ENTERTAINMENT</span>
+          <span className='pl-2 text-gray-700'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> TONY LAZUDO</span>
+        </div>
+        <div className='flex flex-col border-b'>
+          <h1 className='font-serif font-bold text-3xl md:text-5xl mt-8'>
+            This Delicious Sleep Aid Helps You Rest Without Sedatives
+          </h1>
+          <p className='py-3 font-bold text-2xl'>
+            Som Sleep is a delicious berry-flavored drink that’s powerful but not habit-forming.
           </p>
         </div>
-      </section>
+
+        <article className='mt-5'>
+          <div>
+            <Image 
+              src='https://futurism.com/_next/image?url=https%3A%2F%2Fwp-assets.futurism.com%2F2020%2F06%2Fsom-sleep-aid-drink.jpg&w=1080&q=75'
+              width='1080' 
+              height='600' 
+              layout='responsive' 
+            />
+          </div>
+          <div className='font-serif text-lg mt-10 text-gray-900 tracking-wide'>
+            <p>
+              Sometimes it seems like we’re facing an epidemic of sleep troubles. The modern era just wasn’t engineered with the goal of everybody getting a decent shut eye, and as a result, many of us are suffering on a nightly (and daily) basis. That means it’s up to us to try and take control of our own sleep habits.  And for many, Som Sleep is a sleep aid that might just be the perfect solution.
+
+              It’s not unusual to worry about using a powerful prescription sedative for fear of becoming addicted, not to mention all the other potentially dangerous side-effects you might have to worry about. But Som Sleep was created to give users a good night’s rest with minimal side-effects, all in the form of a delicious berry-flavored drink that’s effective without being habit-forming. This is accomplished by way of the Original Som Sleep Formula, or “Som Stack,” which combines natural ingredients with green tea to give your body the nutritional building blocks of a good night’s sleep.
+            </p>
+          </div>
+        </article>
+      </div>
     </div>
   )
 }

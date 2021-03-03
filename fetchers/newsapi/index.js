@@ -6,6 +6,7 @@ import {
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY)
 
 export const getArticles = async () => {
+  console.log('called')
   const latest = await newsapi.v2.topHeadlines({
     country: 'us'
   })

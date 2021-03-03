@@ -1,95 +1,111 @@
-import Navbar from '../components/Navbar.js'
-import Headline from '../components/Headline.js'
-import HugeHeadline from '../components/HugeHeadline.js'
-import MediumArticleBox from '../components/MediumArticleBox.js'
-import SmallArticleBox from '../components/SmallArticleBox.js'
-import Footer from '../components/Footer.js'
-import Section from '../components/Section.js'
-import CategoryCard from '../components/CategoryCard.js'
-import CenteredContainer from '../components/CenteredContainer.js'
+import { Header } from '../components/Header.js'
+import { ArticleCard } from '../components/ArticleCard.js'
+import { Headline } from '../components/Headline.js'
+import { Container } from '../components/Container.js'
+import { Footer } from '../components/Footer.js'
 import articles from '../fetchers/articles.preval'
 
-const Home = () => {
+export default function Home () {
   return (
-  <div>
-    <Navbar />
-    <div className='px-5 w-full bg-gray-100'>
-      <CenteredContainer>
-        <div className='flex h-12 flex-wrap flex-row gap-5 items-center'> 
-          <span className='text-pink-shock font-bold'>Entertainment</span>
-          <span className='text-green-shock font-bold'>Health & Care</span>
-          <span className='text-black font-bold'>COVID-19</span>
-          <span className='text-green-shock font-bold'>U.S Politics</span>
-        </div>
-      </CenteredContainer>
-    </div>
-    {/* <div className='flex p-5 gap-5 justify-center flex-wrap flex-row'> */}
-    {/*   <CategoryCard title='Entertainment' classes='text-white bg-pink-shock'/> */}
-    {/*   <CategoryCard title='Health' classes='text-white bg-green-shock'/> */}
-    {/* </div> */}
-    <Section title='Latest'>
-      <div className='gap-5'>
-        <a href={`/articles/${articles.latest[0].id}`} className='w-full'>
-          <Headline
-            title={articles.latest[0].title} 
-            category={articles.latest[0].category} 
-            date={articles.latest[0].date}
-            imgUrl={articles.latest[0].imgUrl}
-          />
+    <div>
+      <Header borderColor={'border-black'} />
+      <nav className='flex justify-center mt-2 flex-row flex-no-wrap items-center text-sm last:hidden tracking-wide font-bold font-caps'>
+        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+          <div className='w-2 h-2 mr-2 rounded-full bg-red-500'></div>
+          ENTERTAINMENT
         </a>
-        <div className='flex flex-wrap gap-5 mt-5'>
-          {
-            articles.latest
-              .slice(1, 3)
-              .map(a => (
-                  <MediumArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />
-              ))
-          }
+        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+          <div className='w-2 h-2 mr-2 rounded-full bg-black'></div>
+          COVID-19
+        </a>
+        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+          <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
+          TECHNOLOGY
+        </a>
+        <a className='flex flex-row items-center px-2 flex-shrink-0'>
+          <div className='w-2 h-2 mr-2 rounded-full bg-yellow-500'></div>
+          SCIENCE
+        </a>
+      </nav>
+
+      <section className='mt-5 max-w-screen-lg m-0 m-auto px-4'>
+        <Headline article={articles.latest[0]} />
+      </section>
+
+      <section className='mt-24 max-w-screen-lg m-0 m-auto px-4'>
+        <div className='flex flex-row justify-center'>
+          <div className='h-1 w-full bg-purple-600'></div>
+          <h2 className='font-bold p-2 text-2xl flex-shrink-0 font-caps'>
+            <span className='text-purple-600'>TOP</span> STORIES
+          </h2>
+          <div className='h-px w-full bg-black'></div>
         </div>
-        <div className='flex flex-wrap justify-center mt-5 gap-5'>
-          {
-            articles.latest
-              .slice(3)
-              .map(a => <SmallArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />)
-          }
+        <div className='mt-3'>
+          <div className='flex flex-col md:flex-row h-auto md:h-36 items-start'>
+            <div className='flex flex-1 flex-col text-center items-center'>
+              <span className='tracking-wider text-sm text-yellow-500 mb-3'>ENTERTAINMENT</span>
+              <a href='#' className='font-serif tracking-tight font-medium text-xl w-10/12 hover:underline'>{articles.latest[1].title}</a>
+            </div>
+            <div className='flex flex-1 flex-col text-center items-center'>
+              <span className='tracking-wider text-sm mb-3'>COVID-19</span>
+              <a href='#' className='font-serif tracking-tight font-medium text-xl w-10/12 hover:underline'>{articles.latest[2].title}</a>
+            </div>
+            <div className='flex flex-1 flex-col text-center items-center'>
+              <span className='tracking-wider text-sm text-red-500 mb-3'>TECHNOLOGY</span>
+              <a href='#' className='font-serif tracking-tight font-medium text-xl w-10/12 hover:underline'>{articles.latest[3].title}</a>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <section className='mt-24'>
+        <div className='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
+          <h2 className='font-serif text-2xl md:text-5xl font-bold mr-2'>Entertainment</h2>
+          <div className='flex justify-start md:justify-end border-b border-red-600 w-full'>
+            <a href='#' className='text-gray-600 py-1 font-bold text-sm tracking-wider hover:underline'>SEE MORE ENTERTAINMENT</a>
+          </div>
+        </div>
+
+        <div className='bg-black h-96 mt-5'>
+        </div>
+      </section>
+
+      <section className='max-w-screen-lg m-0 m-auto mt-24 px-4'>
+        <div className='flex flex-row justify-center'>
+          <div className='h-1 w-full bg-blue-600'></div>
+          <h2 className='font-bold p-2 text-2xl flex-shrink-0 font-caps'>
+            <span className='text-blue-600'>THE</span> LATEST
+          </h2>
+          <div className='h-px w-full bg-black'></div>
+        </div>
+        <ul className='mt-5'>
+          <li className='mb-5'>
+            <ArticleCard />
+          </li>
+          <li className='mb-5'>
+            <ArticleCard />
+          </li>
+          <li className='mb-5'>
+            <ArticleCard />
+          </li>
+          <li className='mb-5'>
+            <ArticleCard />
+          </li>
+          <li className='mb-5'>
+            <ArticleCard />
+          </li>
+          <li className='mb-5'>
+            <ArticleCard />
+          </li>
+          <li>
+            <ArticleCard />
+          </li>
+        </ul>
+      </section>
+
+      <div className='mt-10'>
+        <Footer />
       </div>
-    </Section>
-    <Section title='COVID-19' classes='bg-black text-white'>
-      <HugeHeadline 
-        title={articles.covid[0].title} 
-        date={articles.covid[0].date}
-        imgUrl={articles.covid[0].imgUrl}
-      />
-        <div className='flex flex-wrap gap-5 mt-5'>
-          {
-            articles.covid
-              .slice(1)
-              .map(a => (
-                  <MediumArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />
-              ))
-          }
-        </div>
-    </Section>
-    <Section title='Entertainment' classes='bg-pink-shock text-white'>
-        <HugeHeadline 
-          title={articles.entertainment[0].title} 
-          date={articles.entertainment[0].date}
-          imgUrl={articles.entertainment[0].imgUrl}
-        />
-        <div className='flex flex-wrap gap-5 mt-5'>
-          {
-            articles.entertainment
-              .slice(1)
-              .map(a => (
-                  <MediumArticleBox title={a.title} category={a.category} date={a.date} imgUrl={a.imgUrl} />
-              ))
-          }
-        </div>
-    </Section>
-    <Footer />
-  </div>
+    </div>
   )
 }
-
-export default Home
