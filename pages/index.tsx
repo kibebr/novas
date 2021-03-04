@@ -31,31 +31,35 @@ export default function Home (): JSX.Element {
 
       <Header borderColor={'border-black'} />
 
-      <nav className='flex justify-center mt-2 flex-row flex-no-wrap items-center text-sm last:hidden tracking-wide font-bold font-caps overflow-auto'>
-        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
-          <div className='w-2 h-2 mr-2 rounded-full bg-red-500'></div>
-          ENTERTAINMENT
-        </a>
-        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
-          <div className='w-2 h-2 mr-2 rounded-full bg-black'></div>
-          COVID-19
-        </a>
-        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
-          <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
-          TECHNOLOGY
-        </a>
-        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
-          <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
-          BUSINESS
-        </a>
-        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
-          <div className='w-2 h-2 mr-2 rounded-full bg-green-700'></div>
-          HEALTH
-        </a>
-        <a className='flex flex-row items-center px-2 flex-shrink-0'>
-          <div className='w-2 h-2 mr-2 rounded-full bg-yellow-500'></div>
-          SCIENCE
-        </a>
+      <nav className='flex w-full mt-2 text-sm overflow-y-hidden tracking-wide font-bold font-caps overflow-x-scroll no-scrollbar'>
+        <div className='flex-1'></div>
+        <div className='flex flex-no-wrap items-center'>
+          <a href='/category/entertainment' className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black hover:underline'>
+            <div className='w-2 h-2 mr-2 rounded-full bg-red-500'></div>
+            ENTERTAINMENT
+          </a>
+          <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+            <div className='w-2 h-2 mr-2 rounded-full bg-black'></div>
+            COVID-19
+          </a>
+          <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+            <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
+            TECHNOLOGY
+          </a>
+          <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+            <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
+            BUSINESS
+          </a>
+          <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+            <div className='w-2 h-2 mr-2 rounded-full bg-green-700'></div>
+            HEALTH
+          </a>
+          <a className='flex flex-row items-center px-2 flex-shrink-0'>
+            <div className='w-2 h-2 mr-2 rounded-full bg-yellow-500'></div>
+            SCIENCE
+          </a>
+        </div>
+        <div className='flex-1'></div>
       </nav>
 
       <main>
