@@ -16,13 +16,20 @@ module.exports = {
         }
       },
       height: {
-        '112': '28rem',
-        '128': '32rem'
+        112: '28rem',
+        128: '32rem'
+      },
+      width: {
+        112: '28rem',
+        128: '32rem'
+      },
+      boxShadow: {
+        'side-black': '-2px 4px 0px 2px #000000'
       }
     }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
   plugins: []
 }

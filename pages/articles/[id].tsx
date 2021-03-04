@@ -2,25 +2,32 @@ import {
   GetStaticProps,
   GetStaticPaths
 } from 'next'
+import { FunctionComponent } from 'react'
 import { Header } from '../../components/Header.js'
+import { Article } from '../index'
 import Image from 'next/image'
 import articles from '../../fetchers/articles.preval'
 
-export default function Article ({ article }): JSX.Element {
+interface ArticlePageProps {
+  article: Article
+}
+
+export default (({ article }) => {
   return (
     <div className='py-16'>
       <Header borderColor='border-purple-700' />
+
       <div className='max-w-screen-lg m-0 m-auto px-4 mt-5'>
         <div className='text-sm font-bold'>
-          <span className='text-purple-700 border-r border-purple-700 pr-2'>ENTERTAINMENT</span>
-          <span className='pl-2 text-gray-700'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> TONY LAZUDO</span>
+          <span className='text-purple-700 border-r border-purple-700 pr-2'>{article.category}</span>
+          <span className='pl-2 text-gray-700'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> JOHN DOE</span>
         </div>
         <div className='flex flex-col border-b'>
           <h1 className='font-serif font-bold text-3xl md:text-5xl mt-8'>
-            This Delicious Sleep Aid Helps You Rest Without Sedatives
+            {article.title}
           </h1>
           <p className='py-3 font-bold text-2xl'>
-            Som Sleep is a delicious berry-flavored drink that’s powerful but not habit-forming.
+            {article.description}
           </p>
         </div>
 
@@ -44,7 +51,7 @@ export default function Article ({ article }): JSX.Element {
       </div>
     </div>
   )
-}
+}) as FunctionComponent<ArticlePageProps>
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
@@ -55,7 +62,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allArticlesIds = Object
+  const allArticlesIds =
+    Object
     .values(articles.all)
     .map(({ id }) => id)
 

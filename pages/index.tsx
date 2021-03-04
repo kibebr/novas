@@ -1,20 +1,37 @@
 import { Header } from '../components/Header'
 import { ArticleCard } from '../components/ArticleCard'
+import { ArticleTopCard } from '../components/ArticleTopCard'
+import { CovidArticleCard } from '../components/CovidArticleCard'
 import { Headline } from '../components/Headline'
-import { Container } from '../components/Container'
 import { Footer } from '../components/Footer'
-import articles from '../fetchers/articles.preval'
+import { DarkGoldFilter } from '../components/filters/DarkGoldFiter'
+import ArrowRight from '../public/icons/arrow-right.svg'
+import categories from '../fetchers/categories.preval'
 
 export interface Article {
   id: string
   title: string
+  date: string
+  imgUrl: string
+  description: string
+  categoryName: string
+}
+
+export interface Category {
+  id: string
+  name: string
+  accentColor: string
+  articles: Article[]
 }
 
 export default function Home (): JSX.Element {
   return (
     <div>
+      <DarkGoldFilter />
+
       <Header borderColor={'border-black'} />
-      <nav className='flex justify-center mt-2 flex-row flex-no-wrap items-center text-sm last:hidden tracking-wide font-bold font-caps'>
+
+      <nav className='flex justify-center mt-2 flex-row flex-no-wrap items-center text-sm last:hidden tracking-wide font-bold font-caps overflow-auto'>
         <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
           <div className='w-2 h-2 mr-2 rounded-full bg-red-500'></div>
           ENTERTAINMENT
@@ -27,6 +44,14 @@ export default function Home (): JSX.Element {
           <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
           TECHNOLOGY
         </a>
+        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+          <div className='w-2 h-2 mr-2 rounded-full bg-purple-700'></div>
+          BUSINESS
+        </a>
+        <a className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
+          <div className='w-2 h-2 mr-2 rounded-full bg-green-700'></div>
+          HEALTH
+        </a>
         <a className='flex flex-row items-center px-2 flex-shrink-0'>
           <div className='w-2 h-2 mr-2 rounded-full bg-yellow-500'></div>
           SCIENCE
@@ -34,11 +59,12 @@ export default function Home (): JSX.Element {
       </nav>
 
       <main>
-        <section className='mt-5 max-w-screen-lg m-0 m-auto px-4'>
-          <Headline article={articles.latest[0]} />
+        <section className='mt-10 max-w-screen-lg m-0 m-auto px-4'>
+          <Headline article={categories[0].articles[0]} />
         </section>
 
-        <section className='mt-24 max-w-screen-lg m-0 m-auto px-4'>
+        <section className='flex flex-col mt-24 max-w-screen-lg m-0 m-auto px-4'>
+
           <div className='flex flex-row justify-center'>
             <div className='h-1 w-full bg-purple-600'></div>
             <h2 className='font-bold p-2 text-2xl flex-shrink-0 font-caps'>
@@ -46,21 +72,17 @@ export default function Home (): JSX.Element {
             </h2>
             <div className='h-px w-full bg-black'></div>
           </div>
+
           <div className='mt-3'>
-            <div className='flex flex-col md:flex-row h-auto md:h-36 items-start'>
-              <div className='flex flex-1 flex-col text-center items-center'>
-                <span className='tracking-wider text-sm text-yellow-500 mb-3'>ENTERTAINMENT</span>
-                <a href='#' className='font-serif tracking-tight font-medium text-xl w-10/12 hover:underline'>{articles.latest[1].title}</a>
-              </div>
-              <div className='flex flex-1 flex-col text-center items-center'>
-                <span className='tracking-wider text-sm mb-3'>COVID-19</span>
-                <a href='#' className='font-serif tracking-tight font-medium text-xl w-10/12 hover:underline'>{articles.latest[2].title}</a>
-              </div>
-              <div className='flex flex-1 flex-col text-center items-center'>
-                <span className='tracking-wider text-sm text-red-500 mb-3'>TECHNOLOGY</span>
-                <a href='#' className='font-serif tracking-tight font-medium text-xl w-10/12 hover:underline'>{articles.latest[3].title}</a>
-              </div>
-            </div>
+            <ul className='flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4'>
+              {[categories[0].articles[1], categories[0].articles[2], categories[0].articles[3]].map((article) => (
+                <li className='flex flex-1'>
+                  <a href=''>
+                    <ArticleTopCard article={article} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -73,6 +95,19 @@ export default function Home (): JSX.Element {
           </div>
 
           <div className='bg-black h-96 mt-5'>
+          </div>
+        </section>
+
+        <section className='relative bg-yellow-500 h-screen mt-24 pl-4'>
+          <div className='flex w-full overflow-x-scroll no-scrollbar'>
+            <div className='flex flex-no-wrap items-center space-x-4 m-5'>
+              <CovidArticleCard article={categories[3].articles[1]} />
+              <CovidArticleCard article={categories[3].articles[2]} />
+              <CovidArticleCard article={categories[3].articles[3]} />
+            </div>
+          </div>
+          <div className='justify-center self-center'>
+            <ArrowRight className='w-14 h-14 text-white' />
           </div>
         </section>
 

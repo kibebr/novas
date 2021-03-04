@@ -1,6 +1,7 @@
+import { Article } from '../../pages/index'
 import shortid from 'shortid'
 
-const months = [
+const months: string[] = [
   'January',
   'February',
   'March',
@@ -15,7 +16,7 @@ const months = [
   'December'
 ]
 
-export const deleteSourceFromTitle = title => {
+export const deleteSourceFromTitle = (title: string): string => {
   for (let i = title.length - 1; i > 0; --i) {
     if (title[i] === '-') {
       return title.slice(0, i - 1)
@@ -25,17 +26,9 @@ export const deleteSourceFromTitle = title => {
   return title
 }
 
-export const toDateText = (date) => {
+export const toDateText = (date: string): string => {
   const year = date.slice(0, 4)
   const month = Number(date.slice(6, 7))
   const day = date.slice(8, 10)
   return `${months[month - 1]} ${day}, ${year}`
 }
-
-export const toArticle = (res) => ({
-  id: shortid.generate(),
-  title: deleteSourceFromTitle(res.title),
-  date: toDateText(res.publishedAt),
-  imgUrl: res.urlToImage,
-  category: 'NULL'
-})
