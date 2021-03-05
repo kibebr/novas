@@ -15,7 +15,7 @@ export const CovidArticleCard: FunctionComponent<CovidArticleCardProps> = ({ art
       }}
     >
     </div>
-    <div className='absolute w-full h-full bg-black z-1 opacity-70'>
+    <div className='absolute w-full h-full bg-black z-1 opacity-50'>
     </div>
     <div className='w-full h-full z-50 flex flex-col justify-evenly p-2'>
       <div className='font-mono text-sm'>

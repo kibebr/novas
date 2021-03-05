@@ -31,5 +31,12 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [
+    require('tailwindcss-typography')({
+      ellipsis: false,
+      hyphens: false,
+      kerning: true,
+      textUnset: false
+    })
+  ]
 }

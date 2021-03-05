@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  a {
+  }
+}
+
 @layer utilities {
   .bg-blur {
     background-color: rgba(255, 255, 255, 0.7);
@@ -15,5 +20,15 @@
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  .underline-wavy {
+    text-decoration-style: wavy !important;
+  }
+
+  .inset-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }

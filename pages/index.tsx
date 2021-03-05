@@ -5,6 +5,7 @@ import { CovidArticleCard } from '../components/CovidArticleCard'
 import { Headline } from '../components/Headline'
 import { Footer } from '../components/Footer'
 import { DarkGoldFilter } from '../components/filters/DarkGoldFiter'
+import { Slider } from '../components/Slider'
 import ArrowRight from '../public/icons/arrow-right.svg'
 import categories from '../fetchers/categories.preval'
 
@@ -31,10 +32,9 @@ export default function Home (): JSX.Element {
 
       <Header borderColor={'border-black'} />
 
-      <nav className='flex w-full mt-2 text-sm overflow-y-hidden tracking-wide font-bold font-caps overflow-x-scroll no-scrollbar'>
-        <div className='flex-1'></div>
-        <div className='flex flex-no-wrap items-center'>
-          <a href='/category/entertainment' className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black hover:underline'>
+      <nav className='mt-2 text-sm tracking-wide font-bold font-caps'>
+        <Slider>
+          <a href='/category/entertainment' className='flex flex-row items-center px-2 flex-shrink-0 border-r border-black hover:underline line-red-500'>
             <div className='w-2 h-2 mr-2 rounded-full bg-red-500'></div>
             ENTERTAINMENT
           </a>
@@ -58,6 +58,12 @@ export default function Home (): JSX.Element {
             <div className='w-2 h-2 mr-2 rounded-full bg-yellow-500'></div>
             SCIENCE
           </a>
+        </Slider>
+      </nav>
+
+      <nav className='flex w-full mt-2 text-sm overflow-y-hidden tracking-wide font-bold font-caps overflow-x-scroll no-scrollbar'>
+        <div className='flex-1'></div>
+        <div className='flex flex-no-wrap items-center'>
         </div>
         <div className='flex-1'></div>
       </nav>
@@ -69,10 +75,10 @@ export default function Home (): JSX.Element {
 
         <section className='flex flex-col mt-24 max-w-screen-lg m-0 m-auto px-4'>
 
-          <div className='flex flex-row justify-center'>
-            <div className='h-1 w-full bg-purple-600'></div>
-            <h2 className='font-bold p-2 text-2xl flex-shrink-0 font-caps'>
-              <span className='text-purple-600'>TOP</span> STORIES
+          <div className='flex flex-row items-center justify-center'>
+            <div className='h-px w-full bg-black'></div>
+            <h2 className='font-bold text-2xl flex-shrink-0 font-caps'>
+              TOP STORIES
             </h2>
             <div className='h-px w-full bg-black'></div>
           </div>
@@ -80,11 +86,9 @@ export default function Home (): JSX.Element {
           <div className='mt-3'>
             <ul className='flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4'>
               {[categories[0].articles[1], categories[0].articles[2], categories[0].articles[3]].map((article) => (
-                <li className='flex flex-1'>
-                  <a href=''>
-                    <ArticleTopCard article={article} />
-                  </a>
-                </li>
+                <a href='' className='flex'>
+                  <ArticleTopCard article={article} />
+                </a>
               ))}
             </ul>
           </div>
@@ -92,9 +96,9 @@ export default function Home (): JSX.Element {
 
         <section className='mt-24'>
           <div className='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
-            <h2 className='font-serif text-2xl md:text-5xl font-bold mr-2'>Entertainment</h2>
+            <h2 className='font-caps text-2xl md:text-5xl font-bold mr-2'>ENTERTAINMENT</h2>
             <div className='flex justify-start md:justify-end border-b border-red-600 w-full'>
-              <a href='#' className='text-gray-600 py-1 font-bold text-sm tracking-wider hover:underline'>SEE MORE ENTERTAINMENT</a>
+              <a href='#' className='text-gray-600 py-1 font-bold text-sm tracking-wider hover:underline'>SEE MORE ENTERTAINMENT →</a>
             </div>
           </div>
 
@@ -102,49 +106,41 @@ export default function Home (): JSX.Element {
           </div>
         </section>
 
-        <section className='relative bg-yellow-500 h-screen mt-24 pl-4'>
-          <div className='flex w-full overflow-x-scroll no-scrollbar'>
-            <div className='flex flex-no-wrap items-center space-x-4 m-5'>
+        <section className='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-8'>
+          <h2 className='font-bold font-caps text-7xl md:text-8xl transform translate-y-10'>COVID-19</h2>
+
+          <div className='p-2 ml-4 w-full'>
+            <Slider classesChildren='space-x-4 flex-no-wrap' classesContainer='ml-4 p-1'>
               <CovidArticleCard article={categories[3].articles[1]} />
               <CovidArticleCard article={categories[3].articles[2]} />
               <CovidArticleCard article={categories[3].articles[3]} />
+            </Slider>
+          </div>
+
+          <a href='#' className='flex flex-col items-center text-center space-y-2'>
+            <div className='rounded-full relative bg-white p-2 w-14 h-14'>
+              <ArrowRight className='absolute inset-center text-black w-12 h-12' />
             </div>
-          </div>
-          <div className='justify-center self-center'>
-            <ArrowRight className='w-14 h-14 text-white' />
-          </div>
+            <span className='font-mono text-sm'>
+              READ MORE
+              <span className='text-white'> COVID-19</span>
+            </span>
+          </a>
+
         </section>
 
         <section className='max-w-screen-lg m-0 m-auto mt-24 px-4'>
-          <div className='flex flex-row justify-center'>
-            <div className='h-1 w-full bg-blue-600'></div>
-            <h2 className='font-bold p-2 text-2xl flex-shrink-0 font-caps'>
-              <span className='text-blue-600'>THE</span> LATEST
+          <div className='flex flex-row items-center justify-center'>
+            <div className='h-1 w-full bg-black'></div>
+            <h2 className='font-bold text-2xl flex-shrink-0 font-caps'>
+              THE LATEST
             </h2>
             <div className='h-px w-full bg-black'></div>
           </div>
-          <ul className='mt-5'>
-            <li className='mb-5'>
-              <ArticleCard />
-            </li>
-            <li className='mb-5'>
-              <ArticleCard />
-            </li>
-            <li className='mb-5'>
-              <ArticleCard />
-            </li>
-            <li className='mb-5'>
-              <ArticleCard />
-            </li>
-            <li className='mb-5'>
-              <ArticleCard />
-            </li>
-            <li className='mb-5'>
-              <ArticleCard />
-            </li>
-            <li>
-              <ArticleCard />
-            </li>
+          <ul className='mt-5 space-y-4'>
+            {[categories[1].articles[3], categories[2].articles[4], categories[3].articles[5], categories[4].articles[0]].map((article) => (
+              <ArticleCard article={article} />
+            ))}
           </ul>
         </section>
       </main>
