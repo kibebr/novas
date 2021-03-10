@@ -1,9 +1,9 @@
-import { Article } from '../../pages/index'
+import { Article, CategoryTypes } from '../../domain/interfaces'
 import { deleteSourceFromTitle, toDateText } from './utils'
-import shortid from 'shortid'
 import { INewsApiArticle } from 'ts-newsapi/lib/types'
+import shortid from 'shortid'
 
-export const toArticle = (res: INewsApiArticle, categoryName: string): Article => ({
+export const toArticle = (res: INewsApiArticle, categoryName: CategoryTypes): Article => ({
   id: shortid.generate(),
   title: deleteSourceFromTitle(res.title),
   description: res.description === null ? 'This article has no description.' : res.description,

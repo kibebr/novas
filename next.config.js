@@ -3,6 +3,9 @@ const createNextPluginPreval = require('next-plugin-preval/config');
 const withNextPluginPreval = createNextPluginPreval();
 const withPlugins = require('next-compose-plugins')
 const optimizedImages = require('next-optimized-images')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
 
 const nextConfig = {
   webpack: config => {
@@ -27,5 +30,5 @@ module.exports = withNextPluginPreval(
     optimizedImages, {
       handleImages: ['jpeg', 'png', 'webp']
     }
-  ]], nextConfig)
+  ], withBundleAnalyzer], nextConfig)
 )

@@ -1,7 +1,7 @@
 import preval from 'next-plugin-preval'
-import { Category } from '../pages/index'
+import { Category, CategoryTypes } from '../domain/interfaces'
 import { getCategoriesWithArticles } from './newsapi/index'
 
-const getCategories = async (): Promise<Category[]> => await getCategoriesWithArticles()
+const getCategories = async (): Promise<Record<CategoryTypes, Category>> => await getCategoriesWithArticles()
 
 export default preval(getCategories())

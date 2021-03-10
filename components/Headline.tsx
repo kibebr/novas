@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import Image from 'next/image'
-import { Article } from '../pages/index'
+import { Article } from '../domain/interfaces'
 
 interface HeadlineProps {
   article: Article

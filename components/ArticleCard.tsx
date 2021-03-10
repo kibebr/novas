@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { Article } from '../pages/index'
+import { Article } from '../domain/interfaces'
 
 interface ArticleCardProps {
   article: Article

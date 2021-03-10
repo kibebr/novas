@@ -18,10 +18,10 @@
     "postcss": "^8.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "swiper": "^6.4.15",
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^10.0.8",
     "@svgr/webpack": "^5.5.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
