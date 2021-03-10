@@ -3,6 +3,7 @@ import { ArticleCard } from '../components/ArticleCard'
 import { ArticleTopCard } from '../components/ArticleTopCard'
 import { CovidArticleCard } from '../components/CovidArticleCard'
 import { Headline } from '../components/Headline'
+import { NavbarCategoryItem } from '../components/NavbarCategoryItem'
 import { Footer } from '../components/Footer'
 import { FilterProvider } from '../components/filters/FilterProvider'
 import { Slider } from '../components/Slider'
@@ -14,8 +15,13 @@ export default function Home (): JSX.Element {
   return (
     <FilterProvider>
       <div>
-        <Header borderColor={'border-black'} />
-        <Navbar />
+        <Header borderColor='border-black' />
+
+        <Navbar>
+          {Object.values(categories).map((category) => (
+            <NavbarCategoryItem category={category} />
+          ))}
+        </Navbar>
 
         <main>
           <section className='mt-10 max-w-screen-lg m-0 m-auto px-4'>
