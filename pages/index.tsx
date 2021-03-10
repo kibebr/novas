@@ -15,11 +15,11 @@ export default function Home (): JSX.Element {
   return (
     <FilterProvider>
       <div>
-        <Header borderColor='border-black' />
+        <Header borderColor='border-black' categories={Object.values(categories)} />
 
         <Navbar>
-          {Object.values(categories).map((category) => (
-            <NavbarCategoryItem category={category} />
+          {Object.values(categories).map((c) => (
+            <NavbarCategoryItem category={c} />
           ))}
         </Navbar>
 
