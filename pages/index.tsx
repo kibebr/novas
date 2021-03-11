@@ -24,7 +24,7 @@ export default function Home (): JSX.Element {
         </Navbar>
 
         <main>
-          <section className='mt-10 max-w-screen-lg m-0 m-auto px-4'>
+          <section className='mt-10 max-w-screen-lg m-0 m-auto px-4 z-0'>
             <Headline article={categories.general.articles[0]} />
           </section>
 

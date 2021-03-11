@@ -9,6 +9,7 @@ export interface Article {
 
 export interface Category {
   name: CategoryTypes
+  color: string
   articles: Article[]
 }
 

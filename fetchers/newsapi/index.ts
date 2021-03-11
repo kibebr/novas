@@ -6,11 +6,11 @@ import { ApiNewsCategory } from 'ts-newsapi/lib/types'
 
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY as string)
 
-const categoriesToSearchFor: ApiNewsCategory[] = [
-  'general',
-  'business',
-  'science',
-  'health'
+const categoriesToSearchFor: Array<[ApiNewsCategory, string]> = [
+  ['general', 'black'],
+  ['business', 'purple-600'],
+  ['science', 'blue-600'],
+  ['health', 'green-600']
 ]
 
 const assignBy = (key: any) => (data: any, item: any) => {
@@ -18,17 +18,12 @@ const assignBy = (key: any) => (data: any, item: any) => {
   return data
 }
 
-export const createCategory = (name: string, articles: Article[]): Category => ({
-  name: name as CategoryTypes,
-  articles
-})
-
 export const getCategoriesWithArticles = async (): Promise<Record<CategoryTypes, Category>> => {
   const categories = await Promise.all([
-    ...categoriesToSearchFor.map(async (c) => await newsapi.getTopHeadlines({ category: c, country: 'us' }))
+    ...categoriesToSearchFor.map(async (c) => await newsapi.getTopHeadlines({ category: c[0], country: 'us' }))
   ])
 
-  const withNames = categories.map((c, i) => ({ ...c, name: categoriesToSearchFor[i] }))
+  const withNames = categories.map((c, i) => ({ ...c, name: categoriesToSearchFor[i][0], color: categoriesToSearchFor[i][1] }))
 
   const categoriesWithMappedArticles = withNames.map((c) => ({
     ...c,
