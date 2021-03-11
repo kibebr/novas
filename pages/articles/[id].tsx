@@ -2,24 +2,24 @@ import {
   GetStaticProps,
   GetStaticPaths
 } from 'next'
-import { FunctionComponent } from 'react'
-import { Header } from '../../components/Header.js'
-import { Article } from '../index'
+import { Header } from '../../components/Header'
+import { Article, Category, CategoryInfo } from '../../domain/interfaces'
 import Image from 'next/image'
-import articles from '../../fetchers/articles.preval'
+import categories from '../../fetchers/categories.preval'
 
 interface ArticlePageProps {
+  categoriesInfo: CategoryInfo[]
   article: Article
 }
 
-export default (({ article }) => {
+export default function ArticleComp ({ categoriesInfo, article }: ArticlePageProps): JSX.Element {
   return (
     <div className='py-16'>
-      <Header borderColor='border-purple-700' />
+      <Header borderColor='border-purple-700' categories={categoriesInfo} />
 
       <div className='max-w-screen-lg m-0 m-auto px-4 mt-5'>
         <div className='text-sm font-bold'>
-          <span className='text-purple-700 border-r border-purple-700 pr-2'>{article.category}</span>
+          <span className='text-purple-700 border-r border-purple-700 pr-2'>{article.categoryName.toUpperCase()}</span>
           <span className='pl-2 text-gray-700'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> JOHN DOE</span>
         </div>
         <div className='flex flex-col border-b'>
@@ -51,12 +51,18 @@ export default (({ article }) => {
       </div>
     </div>
   )
-}) as FunctionComponent<ArticlePageProps>
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const categoriesArr: Category[] = Object.values(categories)
+  const categoriesInfo: CategoryInfo[] = categoriesArr.map((c) => ({ name: c.name, color: c.color }))
+  const articles = categoriesArr.flatMap(({ articles }) => articles)
+  const article = articles.find(({ id }) => id === params?.id)
+
   return {
     props: {
-      article: params?.id === undefined ? null : articles.all.find(({ id }) => id === params.id)
+      categoriesInfo,
+      article
     }
   }
 }
@@ -64,8 +70,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const allArticlesIds =
     Object
-    .values(articles.all)
-    .map(({ id }) => id)
+      .values(categories)
+      .flatMap(({ articles }) => articles.map(({ id }) => id))
 
   return {
     paths: allArticlesIds.map(id => ({ params: { id } })),
