@@ -1,12 +1,12 @@
 import { FunctionComponent, useState } from 'react'
-import { Category } from '../domain/interfaces'
+import { CategoryInfo } from '../domain/interfaces'
 import { HeaderMenu } from './HeaderMenu'
 import TabsIcon from '../public/icons/menu.svg'
 import SearchIcon from '../public/icons/search.svg'
 
 interface HeaderProps {
   borderColor: string
-  categories: Category[]
+  categories: CategoryInfo[]
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({ borderColor, categories }) => {

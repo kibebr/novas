@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react'
-import { Category } from '../domain/interfaces'
+import { CategoryInfo } from '../domain/interfaces'
 
 interface NavbarCategoryItemProps {
-  category: Category
+  category: CategoryInfo
 }
 
 export const NavbarCategoryItem: FunctionComponent<NavbarCategoryItemProps> = ({ category }) => (

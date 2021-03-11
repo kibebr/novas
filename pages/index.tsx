@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import { Header } from '../components/Header'
 import { ArticleCard } from '../components/ArticleCard'
 import { ArticleTopCard } from '../components/ArticleTopCard'
@@ -8,24 +9,42 @@ import { Footer } from '../components/Footer'
 import { FilterProvider } from '../components/filters/FilterProvider'
 import { Slider } from '../components/Slider'
 import { Navbar } from '../components/Navbar'
+import { Article, CategoryInfo } from '../domain/interfaces'
 import ArrowRight from '../public/icons/arrow-right.svg'
-import categories from '../fetchers/categories.preval'
 
-export default function Home (): JSX.Element {
+const isCoronaRelated = (a: Article): boolean => a.title.includes('covid') || a.title.includes('corona')
+
+interface HomeProps {
+  categoriesInfo: CategoryInfo[]
+  headline: Article
+  topArticles: Article[]
+  covidArticles: Article[]
+  entertainmentArticles: Article[]
+  moreArticles: Article[]
+}
+
+export default function Home ({
+  categoriesInfo,
+  headline,
+  topArticles,
+  covidArticles,
+  entertainmentArticles,
+  moreArticles
+}: HomeProps): JSX.Element {
   return (
     <FilterProvider>
       <div>
-        <Header borderColor='border-black' categories={Object.values(categories)} />
+        <Header borderColor='border-black' categories={categoriesInfo} />
 
         <Navbar>
-          {Object.values(categories).map((c) => (
+          {categoriesInfo.map((c) => (
             <NavbarCategoryItem category={c} />
           ))}
         </Navbar>
 
         <main>
           <section className='mt-10 max-w-screen-lg m-0 m-auto px-4 z-0'>
-            <Headline article={categories.general.articles[0]} />
+            <Headline article={headline} />
           </section>
 
           <section className='flex flex-col mt-24 max-w-screen-lg m-0 m-auto px-4'>
@@ -40,9 +59,9 @@ export default function Home (): JSX.Element {
 
             <div className='mt-8'>
               <ul className='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
-                {[categories.general.articles[0], categories.general.articles[1], categories.general.articles[2]].map((article) => (
+                {topArticles.map((a) => (
                   <a href='' className='flex'>
-                    <ArticleTopCard article={article} />
+                    <ArticleTopCard article={a} categoryColor={'black'} />
                   </a>
                 ))}
               </ul>
@@ -61,14 +80,14 @@ export default function Home (): JSX.Element {
             </div>
           </section>
 
-          <section className='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-8'>
-            <h2 className='font-bold font-caps text-7xl md:text-8xl transform translate-y-10'>COVID-19</h2>
+          <section className='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-2'>
+            <h2 className='font-bold font-caps text-7xl md:text-9xl'>COVID-19</h2>
 
-            <div className='p-2 ml-4 w-full'>
-              <Slider classesChildren='space-x-4 flex-no-wrap' classesContainer='ml-4 p-1'>
-                <CovidArticleCard article={categories.health.articles[0]} />
-                <CovidArticleCard article={categories.health.articles[1]} />
-                <CovidArticleCard article={categories.health.articles[2]} />
+            <div className='p-2 w-full transform -translate-y-8'>
+              <Slider classesChildren='space-x-4 flex-no-wrap' classesContainer='p-1'>
+                {covidArticles.map((a) => (
+                  <CovidArticleCard article={a} />
+                ))}
               </Slider>
             </div>
 
@@ -93,8 +112,8 @@ export default function Home (): JSX.Element {
               <div className='h-px w-full bg-black'></div>
             </div>
             <ul className='mt-5 space-y-4'>
-              {[categories.business.articles[0]].map((article) => (
-                <ArticleCard article={article} />
+              {moreArticles.map((a) => (
+                <ArticleCard article={a} />
               ))}
             </ul>
           </section>
@@ -106,4 +125,26 @@ export default function Home (): JSX.Element {
       </div>
     </FilterProvider>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { default: categories } = await import('../fetchers/categories.preval')
+
+  const categoriesInfo: CategoryInfo[] = Object.values(categories).map((c) => ({ name: c.name, color: c.color }))
+  const headline = categories.general.articles[0]
+  const topArticles = categories.general.articles.slice(1, 10)
+  const covidArticles = categories.health.articles.filter(isCoronaRelated)
+  const entertainmentArticles = categories.entertainment.articles
+  const moreArticles = categories.business.articles
+
+  return {
+    props: {
+      categoriesInfo,
+      headline,
+      topArticles,
+      covidArticles,
+      entertainmentArticles,
+      moreArticles
+    }
+  }
 }

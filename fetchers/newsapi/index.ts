@@ -10,7 +10,12 @@ const categoriesToSearchFor: Array<[ApiNewsCategory, string]> = [
   ['general', 'black'],
   ['business', 'purple-600'],
   ['science', 'blue-600'],
-  ['health', 'green-600']
+  ['entertainment', 'pink-600'],
+  ['health', 'green-600'],
+  ['technology', 'red-600']
+]
+
+const queries: Array<[string, string]> = [
 ]
 
 const assignBy = (key: any) => (data: any, item: any) => {
@@ -20,7 +25,11 @@ const assignBy = (key: any) => (data: any, item: any) => {
 
 export const getCategoriesWithArticles = async (): Promise<Record<CategoryTypes, Category>> => {
   const categories = await Promise.all([
-    ...categoriesToSearchFor.map(async (c) => await newsapi.getTopHeadlines({ category: c[0], country: 'us' }))
+    ...categoriesToSearchFor.map(async (c) => await newsapi.getTopHeadlines({
+      category: c[0],
+      country: 'us',
+      pageSize: 100
+    }))
   ])
 
   const withNames = categories.map((c, i) => ({ ...c, name: categoriesToSearchFor[i][0], color: categoriesToSearchFor[i][1] }))

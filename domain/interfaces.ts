@@ -7,11 +7,14 @@ export interface Article {
   categoryName: CategoryTypes
 }
 
-export interface Category {
+export interface CategoryInfo {
   name: CategoryTypes
   color: string
-  articles: Article[]
 }
+
+export type Category = {
+  articles: Article[]
+} & CategoryInfo
 
 export type CategoryTypes
   = 'general'
