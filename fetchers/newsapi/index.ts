@@ -1,10 +1,20 @@
 import NewsAPI from 'ts-newsapi'
-import shortid from 'shortid'
 import { toArticle } from './mappers'
 import { Article, Category, CategoryTypes } from '../../domain/interfaces'
 import { ApiNewsCategory } from 'ts-newsapi/lib/types'
+import { downloadImage, saveImage } from '../../image/ImageLoader'
+import { getFilename } from '../../utils/String'
+import { normalize, schema } from 'normalizr'
 
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY as string)
+
+const categorySchema = new schema.Entity(
+  'categories',
+  {},
+  {
+    idAttribute: 'name'
+  }
+)
 
 const categoriesToSearchFor: Array<[ApiNewsCategory, string]> = [
   ['general', 'black'],
@@ -14,14 +24,6 @@ const categoriesToSearchFor: Array<[ApiNewsCategory, string]> = [
   ['health', 'green-600'],
   ['technology', 'red-600']
 ]
-
-const queries: Array<[string, string]> = [
-]
-
-const assignBy = (key: any) => (data: any, item: any) => {
-  data[item[key]] = item
-  return data
-}
 
 export const getCategoriesWithArticles = async (): Promise<Record<CategoryTypes, Category>> => {
   const categories = await Promise.all([
@@ -39,9 +41,9 @@ export const getCategoriesWithArticles = async (): Promise<Record<CategoryTypes,
     articles: c.articles.map((a) => toArticle(a, c.name as CategoryTypes))
   }))
 
-  const normalized = categoriesWithMappedArticles.reduce(assignBy('name'), {})
+  const normalized = normalize(categoriesWithMappedArticles, new schema.Array(categorySchema))
 
-  return normalized
+  return normalized.entities.categories as Record<CategoryTypes, Category>
 }
 
 // TODO: it'd be great to check if a category that is to be searched does not exist in the domain, or if the api does not have a category specified in the domain. however, for now, just returning [] is okay
