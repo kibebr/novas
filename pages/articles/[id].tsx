@@ -14,7 +14,7 @@ interface ArticlePageProps {
 
 export default function ArticleComp ({ categoriesInfo, article }: ArticlePageProps): JSX.Element {
   return (
-    <div className='py-16'>
+    <div>
       <Header borderColor='border-purple-700' categories={categoriesInfo} />
 
       <div className='max-w-screen-lg m-0 m-auto px-4 mt-5'>

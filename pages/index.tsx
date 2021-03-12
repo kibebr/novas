@@ -10,9 +10,17 @@ import { FilterProvider } from '../components/filters/FilterProvider'
 import { Slider } from '../components/Slider'
 import { Navbar } from '../components/Navbar'
 import { Article, CategoryInfo } from '../domain/interfaces'
+import { randomElements } from '../utils/Array'
+import * as A from 'fp-ts/Array'
+import * as F from 'fp-ts/function'
+import { prop } from 'fp-ts-ramda'
+import { values } from 'fp-ts-std/Record'
 import ArrowRight from '../public/icons/arrow-right.svg'
 
-const isCoronaRelated = (a: Article): boolean => a.title.includes('covid') || a.title.includes('corona')
+const isCoronaRelated = (a: Article): boolean => {
+  const lowercasedTitle = a.title.toLowerCase()
+  return lowercasedTitle.includes('covid') || lowercasedTitle.includes('corona')
+}
 
 interface HomeProps {
   categoriesInfo: CategoryInfo[]
@@ -132,10 +140,15 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const categoriesInfo: CategoryInfo[] = Object.values(categories).map((c) => ({ name: c.name, color: c.color }))
   const headline = categories.general.articles[0]
-  const topArticles = categories.general.articles.slice(1, 10)
+  const topArticles = categories.general.articles.slice(0, 3)
   const covidArticles = categories.health.articles.filter(isCoronaRelated)
   const entertainmentArticles = categories.entertainment.articles
-  const moreArticles = categories.business.articles
+  const moreArticles = F.pipe(
+    categories,
+    values,
+    A.chain(prop('articles')),
+    randomElements(10)
+  )
 
   return {
     props: {
