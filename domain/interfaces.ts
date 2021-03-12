@@ -24,12 +24,3 @@ export type CategoryTypes
   | 'covid19'
   | 'technology'
   | 'science'
-
-export const colors: { [key in CategoryTypes]: string } = {
-  business: 'red',
-  science: 'purple',
-  technology: 'blue',
-  'covid19': 'black',
-  entertainment: 'yellow',
-  health: 'green'
-}

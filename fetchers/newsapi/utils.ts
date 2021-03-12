@@ -1,6 +1,3 @@
-import { Article } from '../../pages/index'
-import shortid from 'shortid'
-
 const months: string[] = [
   'January',
   'February',

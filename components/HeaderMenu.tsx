@@ -1,11 +1,11 @@
-import { Category } from '../domain/interfaces'
+import { Category, CategoryInfo } from '../domain/interfaces'
 import { MouseEventHandler } from 'react'
 import { capitalize } from '../utils/String'
 import XIcon from '../public/icons/x.svg'
 
 interface HeaderMenuProps {
   show: boolean
-  categories: Category[]
+  categories: CategoryInfo[]
   onClose: MouseEventHandler<HTMLButtonElement>
 }
 
