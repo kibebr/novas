@@ -6,6 +6,10 @@ import { Header } from '../../components/Header'
 import { Article, Category, CategoryInfo } from '../../domain/interfaces'
 import Image from 'next/image'
 import categories from '../../fetchers/categories.preval'
+import { chain, map } from 'fp-ts/Array'
+import { pipe, flow } from 'fp-ts/function'
+import { values } from 'fp-ts-std/Record'
+import { prop } from 'fp-ts-ramda'
 
 interface ArticlePageProps {
   categoriesInfo: CategoryInfo[]
@@ -54,9 +58,15 @@ export default function ArticleComp ({ categoriesInfo, article }: ArticlePagePro
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const categoriesArr: Category[] = Object.values(categories)
-  const categoriesInfo: CategoryInfo[] = categoriesArr.map((c) => ({ name: c.name, color: c.color }))
-  const articles = categoriesArr.flatMap(({ articles }) => articles)
+  const categoriesArr: Category[] = values(categories)
+  const categoriesInfo: CategoryInfo[] = pipe(
+    categoriesArr,
+    map((c) => ({ name: c.name, color: c.color }))
+  )
+  const articles = pipe(
+    categoriesArr,
+    chain(prop('articles'))
+  )
   const article = articles.find(({ id }) => id === params?.id)
 
   return {
@@ -68,10 +78,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allArticlesIds =
-    Object
-      .values(categories)
-      .flatMap(({ articles }) => articles.map(({ id }) => id))
+  const allArticlesIds = pipe(
+    categories,
+    values,
+    chain(flow(prop('articles'), map(prop('id'))))
+  )
 
   return {
     paths: allArticlesIds.map(id => ({ params: { id } })),
