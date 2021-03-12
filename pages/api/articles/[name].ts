@@ -7,7 +7,8 @@ import { chain, filter } from 'fp-ts/Array'
 import { prop } from 'fp-ts-ramda'
 import categories from '../../../fetchers/categories.preval'
 
-const handler: NextApiHandler = (req, res) => {
+const handler: NextApiHandler<Article[]> = (req, res) => {
+  console.log('received query: ', req.query)
   const articles: Article[] = pipe(
     categories,
     values,

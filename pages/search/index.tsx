@@ -1,43 +1,37 @@
+import { GetStaticProps } from 'next'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Container } from '../../components/Container'
 import { ArticleCard } from '../../components/ArticleCard'
-import { Article } from '../../domain/interfaces'
+import { Article, CategoryInfo } from '../../domain/interfaces'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { values } from 'fp-ts-std/Record'
+import { map } from 'fp-ts/Array'
+import { prop } from 'fp-ts-ramda'
+import { pipe } from 'fp-ts/function'
+import useSWR from 'swr'
 
-const findArticles = (): Article[] => [{
-  id: '123',
-  title: 'Testing this because this looks really cool',
-  date: 'FEB 19',
-  imgUrl: 'a.png',
-  description: 'okay',
-  categoryName: 'ENTERTAINMENT'
-}, {
-  id: '1234',
-  title: 'This is another article which is a really nice article i made',
-  date: 'FEB 19',
-  imgUrl: 'a.png',
-  description: 'okay',
-  categoryName: 'BUSINESS'
-}]
+interface SearchProps {
+  categoriesInfo: CategoryInfo[]
+}
 
-export default function Search (): JSX.Element {
+export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
   const router = useRouter()
   const [foundArticles, setFoundArticles] = useState<Article[]>([])
   const [query, setQuery] = useState<string | undefined>(undefined)
-
-  useEffect(() => {
-    console.log('query now is: ', query)
-    if (query !== undefined) {
-      setFoundArticles(findArticles())
-    }
-  }, [query])
+  const { data } = useSWR(`/api/articles/${encodeURIComponent(query ?? '')}`, fetch)
 
   useEffect((): void => {
     const { q } = router.query
     setQuery(q as string)
   }, [router])
+
+  useEffect((): void => {
+    data?.json()
+      .then(articles => setFoundArticles(articles))
+      .catch((err) => console.error(err))
+  }, [data])
 
   const search = (query: string): void => {
 
@@ -45,7 +39,8 @@ export default function Search (): JSX.Element {
 
   return (
     <div>
-      <Header borderColor='border-blue-600' />
+      <Header borderColor='border-blue-600' categories={categoriesInfo} />
+
       <main className='min-h-screen'>
         <Container>
           <div className='px-4'>
@@ -79,4 +74,14 @@ export default function Search (): JSX.Element {
       <Footer />
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { default: categories } = await import ('../../fetchers/categories.preval')
+
+  return {
+    props: {
+      categoriesInfo: pipe(categories, values, map((c) => ({ name: c.name, color: c.color })))
+    }
+  }
 }
