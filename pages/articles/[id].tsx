@@ -38,7 +38,7 @@ export default function ArticleComp ({ categoriesInfo, article }: ArticlePagePro
         <article className='mt-5'>
           <div>
             <Image
-              src='https://futurism.com/_next/image?url=https%3A%2F%2Fwp-assets.futurism.com%2F2020%2F06%2Fsom-sleep-aid-drink.jpg&w=1080&q=75'
+              src={`/.images/${article.id}.jpg`}
               width='1080'
               height='600'
               layout='responsive'
