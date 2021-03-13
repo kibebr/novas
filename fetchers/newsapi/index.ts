@@ -1,9 +1,16 @@
 import NewsAPI from 'ts-newsapi'
 import { toArticle } from './mappers'
+import { map, tryCatch, TaskEither } from 'fp-ts/TaskEither'
+import { map as amap, mapWithIndex } from 'fp-ts/Array'
+import { toError } from 'fp-ts/Either'
 import { Article, Category, CategoryTypes } from '../../domain/interfaces'
-import { ApiNewsCategory } from 'ts-newsapi/lib/types'
-import { downloadImage, saveImage } from '../../image/ImageLoader'
-import { getFilename } from '../../utils/String'
+import {
+  ApiNewsCategory,
+  INewsApiResponse,
+  INewsApiTopHeadlinesParams
+} from 'ts-newsapi/lib/types'
+import { flow, pipe } from 'fp-ts/function'
+import { curry2, flip } from 'fp-ts-std/Function'
 import { normalize, schema } from 'normalizr'
 
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY as string)
@@ -25,25 +32,27 @@ const categoriesToSearchFor: Array<[ApiNewsCategory, string]> = [
   ['technology', 'red-600']
 ]
 
-export const getCategoriesWithArticles = async (): Promise<Record<CategoryTypes, Category>> => {
-  const categories = await Promise.all([
-    ...categoriesToSearchFor.map(async (c) => await newsapi.getTopHeadlines({
-      category: c[0],
-      country: 'us',
-      pageSize: 100
-    }))
-  ])
-
-  const withNames = categories.map((c, i) => ({ ...c, name: categoriesToSearchFor[i][0], color: categoriesToSearchFor[i][1] }))
-
-  const categoriesWithMappedArticles = withNames.map((c) => ({
-    ...c,
-    articles: c.articles.map((a) => toArticle(a, c.name as CategoryTypes))
-  }))
-
-  const normalized = normalize(categoriesWithMappedArticles, new schema.Array(categorySchema))
-
-  return normalized.entities.categories as Record<CategoryTypes, Category>
+const defaults: INewsApiTopHeadlinesParams = {
+  country: 'gb',
+  pageSize: 100
 }
 
-// TODO: it'd be great to check if a category that is to be searched does not exist in the domain, or if the api does not have a category specified in the domain. however, for now, just returning [] is okay
+const _normalize = pipe(normalize, curry2, flip)
+
+const fetchCategories: TaskEither<Error, INewsApiResponse[]> = tryCatch(
+  async () => await Promise.all([
+    ...categoriesToSearchFor.map(async (c) => await newsapi.getTopHeadlines({
+      category: c[0],
+      ...defaults
+    }))
+  ]),
+  toError
+)
+
+export const getCategoriesWithArticles = (): TaskEither<Error, Record<string, Category>> => pipe(
+  fetchCategories,
+  map(mapWithIndex((i, a) => ({ ...a, name: categoriesToSearchFor[i][0], color: categoriesToSearchFor[i][1] }))),
+  map(amap((c) => ({ ...c, articles: c.articles.map((a) => toArticle(a, c.name as CategoryTypes)) }))),
+  map((a) => normalize(a, new schema.Array(categorySchema))),
+  map((n) => n.entities.categories as Record<string, Category>)
+)

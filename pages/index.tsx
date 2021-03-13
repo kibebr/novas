@@ -138,6 +138,7 @@ export default function Home ({
 export const getStaticProps: GetStaticProps = async () => {
   const { default: categories } = await import('../fetchers/categories.preval')
 
+  console.log(categories)
   const categoriesInfo: CategoryInfo[] = Object.values(categories).map((c) => ({ name: c.name, color: c.color }))
   const headline = categories.general.articles[0]
   const topArticles = categories.general.articles.slice(0, 3)
