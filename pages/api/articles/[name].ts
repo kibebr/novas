@@ -18,7 +18,6 @@ const handler: NextApiHandler<Article[]> = (req, res) => {
       contains(req.query?.name as string)
     ))
   )
-
   res.status(200).send(articles)
 }
 
