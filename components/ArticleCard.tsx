@@ -23,7 +23,11 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({ article }) =>
             <span className='font-serif italic text-xs'>&nbsp; on &nbsp;</span>
           <span className='text-gray-700'>FEB 19TH</span>
         </span>
-        <h2 className='font-serif font-semibold tracking-tight cursor-pointer text-md md:text-2xl lg:text-3xl hover:underline underline-wavy'>{article.title}</h2>
+        <a
+          href={`/articles/${article.id}`}
+          className='block font-serif font-semibold tracking-tight cursor-pointer text-md md:text-2xl lg:text-3xl hover:underline underline-wavy'>
+          {article.title}
+        </a>
       </div>
     </div>
   )
