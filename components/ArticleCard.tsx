@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { Article } from '../domain/interfaces'
+import Image from 'next/image'
 
 interface ArticleCardProps {
   article: Article
@@ -7,8 +8,14 @@ interface ArticleCardProps {
 
 export const ArticleCard: FunctionComponent<ArticleCardProps> = ({ article }) => {
   return (
-    <div className='flex flex-row space-x-4'>
-      <div className='flex-shrink-0 border bg-center bg-cover w-1/4 h-28 md:h-40' style={{ backgroundImage: `url(${article.imgUrl})` }}>
+    <div className='relative flex flex-row space-x-4'>
+      <div className='relative w-1/4 h-28 md:h-40 flex-shrink-0 border'>
+        <Image
+          className='object-center object-cover z-0'
+          src={`/.images/${article.id}.jpg`}
+          layout='fill'
+          alt={article.title}
+        />
       </div>
       <div className='w-3/4'>
         <span className='font-bold text-xs md:text-sm tracking-wider mb-3'>

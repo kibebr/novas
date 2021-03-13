@@ -8,6 +8,6 @@ export const toArticle = (res: INewsApiArticle, categoryName: CategoryTypes): Ar
   title: deleteSourceFromTitle(res.title),
   description: res.description === null ? 'This article has no description.' : res.description,
   date: toDateText(res.publishedAt),
-  imgUrl: res.urlToImage === null ? 'PLACEHOLDER' : res.urlToImage,
+  imgUrl: res.urlToImage === null ? 'https://picsum.photos/1000/1000' : res.urlToImage,
   categoryName
 })

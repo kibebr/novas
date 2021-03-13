@@ -1,13 +1,12 @@
 import fs from 'fs/promises'
 import FileType, { FileTypeResult } from 'file-type/core'
-import { map as tmap, Task } from 'fp-ts/Task'
-import { map as temap, chain, chainTaskK, tryCatch, TaskEither } from 'fp-ts/TaskEither'
+import { map as temap, chain, tryCatch, TaskEither } from 'fp-ts/TaskEither'
 import { toError } from 'fp-ts/Either'
 import { flow, pipe, constant } from 'fp-ts/function'
 import { prop } from 'fp-ts-ramda'
 import { fold, fromNullable, Option } from 'fp-ts/Option'
 
-interface DownloadedImage {
+export interface DownloadedImage {
   extension: string
   buffer: Buffer
 }
@@ -33,7 +32,7 @@ const toArrayBuffer = (r: Response): TaskEither<Error, ArrayBuffer> => tryCatch(
   toError
 )
 
-const toBuffer = (a: ArrayBuffer): Buffer => Buffer.from(a)
+const toBuffer: (a: ArrayBuffer) => Buffer = Buffer.from
 
 export const downloadImage = (url: string): TaskEither<Error, DownloadedImage> => pipe(
   tryCatch(
