@@ -55,15 +55,11 @@ export default function Home ({
             <Headline article={headline} />
           </section>
 
-          <section className='flex flex-col mt-24 max-w-screen-lg m-0 m-auto px-4'>
+          <section className='flex flex-col items-start mt-24 max-w-screen-lg m-0 m-auto px-4'>
 
-            <div className='flex flex-row items-center justify-center'>
-              <div className='h-px w-full bg-black'></div>
-              <h2 className='font-bold text-2xl flex-shrink-0 font-caps'>
-                TOP STORIES
-              </h2>
-              <div className='h-px w-full bg-black'></div>
-            </div>
+            <h2 className='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
+              TOP STORIES
+            </h2>
 
             <div className='mt-8'>
               <ul className='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
@@ -111,17 +107,16 @@ export default function Home ({
 
           </section>
 
-          <section className='max-w-screen-lg m-0 m-auto mt-24 px-4'>
-            <div className='flex flex-row items-center justify-center'>
-              <div className='h-1 w-full bg-black'></div>
-              <h2 className='font-bold text-2xl flex-shrink-0 font-caps'>
-                THE LATEST
-              </h2>
-              <div className='h-px w-full bg-black'></div>
-            </div>
-            <ul className='mt-5 space-y-4'>
+          <section className='flex flex-col items-start items-center max-w-screen-lg m-0 m-auto mt-5 px-4'>
+            <h2 className='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
+              THE LATEST
+            </h2>
+            <ul className='mt-5 space-y-8'>
               {moreArticles.map((a) => (
-                <ArticleCard article={a} />
+                <>
+                  <ArticleCard article={a} />
+                  <div className='border border-gray-100 h-px w-full'></div>
+                </>
               ))}
             </ul>
           </section>

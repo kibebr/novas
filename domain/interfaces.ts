@@ -4,6 +4,7 @@ export interface Article {
   date: string
   imgUrl: string
   description: string
+  content: string
   categoryName: CategoryTypes
 }
 

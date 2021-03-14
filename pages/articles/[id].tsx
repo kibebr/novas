@@ -23,8 +23,8 @@ export default function ArticleComp ({ categoriesInfo, article }: ArticlePagePro
 
       <div className='max-w-screen-lg m-0 m-auto px-4 mt-5'>
         <div className='text-sm font-bold'>
-          <span className='text-purple-700 border-r border-purple-700 pr-2'>{article.categoryName.toUpperCase()}</span>
-          <span className='pl-2 text-gray-700'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> JOHN DOE</span>
+          <span className='text-purple-700 border-r border-purple-700 pr-2 tracking-wider'>{article.categoryName.toUpperCase()}</span>
+          <span className='pl-2 text-gray-700 tracking-widest'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> JOHN DOE</span>
         </div>
         <div className='flex flex-col border-b'>
           <h1 className='font-serif font-bold text-3xl md:text-5xl mt-8'>
@@ -46,9 +46,7 @@ export default function ArticleComp ({ categoriesInfo, article }: ArticlePagePro
           </div>
           <div className='font-serif text-lg mt-10 text-gray-900 tracking-wide'>
             <p>
-              Sometimes it seems like we’re facing an epidemic of sleep troubles. The modern era just wasn’t engineered with the goal of everybody getting a decent shut eye, and as a result, many of us are suffering on a nightly (and daily) basis. That means it’s up to us to try and take control of our own sleep habits.  And for many, Som Sleep is a sleep aid that might just be the perfect solution.
-
-              It’s not unusual to worry about using a powerful prescription sedative for fear of becoming addicted, not to mention all the other potentially dangerous side-effects you might have to worry about. But Som Sleep was created to give users a good night’s rest with minimal side-effects, all in the form of a delicious berry-flavored drink that’s effective without being habit-forming. This is accomplished by way of the Original Som Sleep Formula, or “Som Stack,” which combines natural ingredients with green tea to give your body the nutritional building blocks of a good night’s sleep.
+              {article.content}
             </p>
           </div>
         </article>

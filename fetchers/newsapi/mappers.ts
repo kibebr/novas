@@ -9,5 +9,6 @@ export const toArticle = (res: INewsApiArticle, categoryName: CategoryTypes): Ar
   description: res.description === null ? 'This article has no description.' : res.description,
   date: toDateText(res.publishedAt),
   imgUrl: res.urlToImage === null ? 'https://picsum.photos/1000/1000' : res.urlToImage,
+  content: res.content as string,
   categoryName
 })
