@@ -51,8 +51,10 @@ const fetchCategories: TaskEither<Error, INewsApiResponse[]> = tryCatch(
 
 export const getCategoriesWithArticles = (): TaskEither<Error, Record<string, Category>> => pipe(
   fetchCategories,
-  map(mapWithIndex((i, a) => ({ ...a, name: categoriesToSearchFor[i][0], color: categoriesToSearchFor[i][1] }))),
-  map(amap((c) => ({ ...c, articles: c.articles.map((a) => toArticle(a, c.name as CategoryTypes)) }))),
-  map((a) => normalize(a, new schema.Array(categorySchema))),
-  map((n) => n.entities.categories as Record<string, Category>)
+  map(flow(
+    mapWithIndex((i, a) => ({ ...a, name: categoriesToSearchFor[i][0], color: categoriesToSearchFor[i][1] })),
+    amap((c) => ({ ...c, articles: c.articles.map((a) => toArticle(a, c.name as CategoryTypes)) })),
+    (a) => normalize(a, new schema.Array(categorySchema)),
+    (n) => n.entities.categories as Record<string, Category>
+  ))
 )

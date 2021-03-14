@@ -6,7 +6,7 @@ import SearchIcon from '../public/icons/search.svg'
 
 interface HeaderProps {
   borderColor: string
-  categories: CategoryInfo[]
+  categories: Record<string, CategoryInfo>
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({ borderColor, categories }) => {

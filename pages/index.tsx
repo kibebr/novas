@@ -13,6 +13,7 @@ import { Article, CategoryInfo } from '../domain/interfaces'
 import { randomElements } from '../utils/Array'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
+import * as R from 'fp-ts/Record'
 import { prop } from 'fp-ts-ramda'
 import { values } from 'fp-ts-std/Record'
 import ArrowRight from '../public/icons/arrow-right.svg'
@@ -23,7 +24,7 @@ const isCoronaRelated = (a: Article): boolean => {
 }
 
 interface HomeProps {
-  categoriesInfo: CategoryInfo[]
+  categoriesInfo: Record<string, CategoryInfo>
   headline: Article
   topArticles: Article[]
   covidArticles: Article[]
@@ -45,7 +46,7 @@ export default function Home ({
         <Header borderColor='border-black' categories={categoriesInfo} />
 
         <Navbar>
-          {categoriesInfo.map((c) => (
+          {Object.values(categoriesInfo).map((c) => (
             <NavbarCategoryItem category={c} />
           ))}
         </Navbar>
@@ -65,7 +66,7 @@ export default function Home ({
               <ul className='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
                 {topArticles.map((a) => (
                   <a href='' className='flex'>
-                    <ArticleTopCard article={a} categoryColor={'black'} />
+                    <ArticleTopCard article={a} categoryColor={categoriesInfo[a.categoryName].color} />
                   </a>
                 ))}
               </ul>
@@ -85,7 +86,7 @@ export default function Home ({
           </section>
 
           <section className='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-2'>
-            <h2 className='font-bold font-caps text-7xl md:text-9xl'>COVID-19</h2>
+            <h2 className='font-bold font-caps text-white tracking-widest text-7xl md:text-9xl'>COVID-19</h2>
 
             <div className='p-2 w-full transform -translate-y-8'>
               <Slider classesChildren='space-x-4 flex-no-wrap' classesContainer='p-1'>
@@ -114,7 +115,7 @@ export default function Home ({
             <ul className='mt-5 space-y-8'>
               {moreArticles.map((a) => (
                 <>
-                  <ArticleCard article={a} />
+                  <ArticleCard article={a} categoryColor={categoriesInfo[a.categoryName].color} />
                   <div className='border border-gray-100 h-px w-full'></div>
                 </>
               ))}
@@ -130,15 +131,31 @@ export default function Home ({
   )
 }
 
+function unsafeHead <T> (arr: T[]): T {
+  return arr[0]
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   const { default: categories } = await import('../fetchers/categories.preval')
 
-  console.log(categories)
-  const categoriesInfo: CategoryInfo[] = Object.values(categories).map((c) => ({ name: c.name, color: c.color }))
-  const headline = categories.general.articles[0]
-  const topArticles = categories.general.articles.slice(0, 3)
+  const categoriesInfo: Record<string, CategoryInfo> = F.pipe(
+    categories,
+    R.map(({ name, color }) => ({ name, color }))
+  )
+
+  const headline: Article = categories.general.articles[0]
+
+  const topArticles: Article[] = F.pipe(
+    categories,
+    values,
+    randomElements(3),
+    A.chain(F.flow(prop('articles'), unsafeHead, A.of))
+  )
+
   const covidArticles = categories.health.articles.filter(isCoronaRelated)
+
   const entertainmentArticles = categories.entertainment.articles
+
   const moreArticles = F.pipe(
     categories,
     values,
