@@ -1,0 +1,6 @@
+.env
+node_modules
+.tmp
+public/.images
+out
+.next
