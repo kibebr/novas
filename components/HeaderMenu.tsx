@@ -1,4 +1,4 @@
-import { CategoryInfo } from '../domain/interfaces'
+import { CategoryInfo } from '../domain/Category'
 import { MouseEventHandler } from 'react'
 import { capitalize } from '../utils/String'
 import XIcon from '../public/icons/x.svg'

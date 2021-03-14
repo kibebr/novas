@@ -3,14 +3,13 @@ import { toArticle } from './mappers'
 import { map, tryCatch, TaskEither } from 'fp-ts/TaskEither'
 import { map as amap, mapWithIndex } from 'fp-ts/Array'
 import { toError } from 'fp-ts/Either'
-import { Article, Category, CategoryTypes } from '../../domain/interfaces'
+import { Category, CategoryTypes } from '../../domain/Category'
 import {
   ApiNewsCategory,
   INewsApiResponse,
   INewsApiTopHeadlinesParams
 } from 'ts-newsapi/lib/types'
 import { flow, pipe } from 'fp-ts/function'
-import { curry2, flip } from 'fp-ts-std/Function'
 import { normalize, schema } from 'normalizr'
 
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY as string)
@@ -36,8 +35,6 @@ const defaults: INewsApiTopHeadlinesParams = {
   country: 'gb',
   pageSize: 100
 }
-
-const _normalize = pipe(normalize, curry2, flip)
 
 const fetchCategories: TaskEither<Error, INewsApiResponse[]> = tryCatch(
   async () => await Promise.all([

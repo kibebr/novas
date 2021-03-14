@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { Article, Category } from '../domain/interfaces'
+import { Article } from '../domain/Article'
 import Zig from '../public/icons/zig.svg'
 
 interface ArticleTopCardProps {

@@ -3,17 +3,17 @@ import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Container } from '../../components/Container'
 import { ArticleCard } from '../../components/ArticleCard'
-import { Article, CategoryInfo } from '../../domain/interfaces'
+import { Article } from '../../domain/Article'
+import { CategoryInfo } from '../../domain/Category'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { values } from 'fp-ts-std/Record'
 import { map } from 'fp-ts/Array'
-import { prop } from 'fp-ts-ramda'
 import { pipe } from 'fp-ts/function'
 import useSWR from 'swr'
 
 interface SearchProps {
-  categoriesInfo: CategoryInfo[]
+  categoriesInfo: Record<string, CategoryInfo>
 }
 
 export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
@@ -59,9 +59,9 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
             </div>
 
             <ul className='mt-10 space-y-8'>
-              {foundArticles.map((article) => (
+              {foundArticles.map((a) => (
                 <li>
-                  <ArticleCard article={article} />
+                  <ArticleCard article={a} categoryColor={categoriesInfo[a.categoryName].color}/>
                 </li>
               ))}
             </ul>

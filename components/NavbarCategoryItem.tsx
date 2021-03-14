@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { CategoryInfo } from '../domain/interfaces'
+import { CategoryInfo } from '../domain/Category'
 
 interface NavbarCategoryItemProps {
   category: CategoryInfo

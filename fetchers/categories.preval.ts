@@ -1,5 +1,5 @@
 import preval from 'next-plugin-preval'
-import { Category } from '../domain/interfaces'
+import { Category } from '../domain/Category'
 import { getCategoriesWithArticles } from './newsapi/index'
 import { downloadImage, saveImage } from '../image/ImageLoader'
 import { of, Task } from 'fp-ts/Task'

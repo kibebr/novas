@@ -1,4 +1,5 @@
-import { Article, CategoryTypes } from '../../domain/interfaces'
+import { Article } from '../../domain/Article'
+import { CategoryTypes } from '../../domain/Category'
 import { deleteSourceFromTitle, toDateText } from './utils'
 import { INewsApiArticle } from 'ts-newsapi/lib/types'
 import { loremIpsum } from 'lorem-ipsum'

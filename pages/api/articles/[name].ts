@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next'
-import { Article } from '../../../domain/interfaces'
+import { Article } from '../../../domain/Article'
 import { flow, pipe } from 'fp-ts/function'
 import { values } from 'fp-ts-std/Record'
 import { contains, toLower } from 'fp-ts-std/String'

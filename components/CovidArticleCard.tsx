@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { Article } from '../domain/interfaces'
+import { Article } from '../domain/Article'
 import Image from 'next/image'
 
 interface CovidArticleCardProps {

@@ -9,19 +9,15 @@ import { Footer } from '../components/Footer'
 import { FilterProvider } from '../components/filters/FilterProvider'
 import { Slider } from '../components/Slider'
 import { Navbar } from '../components/Navbar'
-import { Article, CategoryInfo } from '../domain/interfaces'
-import { randomElements } from '../utils/Array'
+import { Article, isCoronaRelated } from '../domain/Article'
+import { CategoryInfo } from '../domain/Category'
+import { randomElements, unsafeHead } from '../utils/Array'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
 import * as R from 'fp-ts/Record'
 import { prop } from 'fp-ts-ramda'
 import { values } from 'fp-ts-std/Record'
 import ArrowRight from '../public/icons/arrow-right.svg'
-
-const isCoronaRelated = (a: Article): boolean => {
-  const lowercasedTitle = a.title.toLowerCase()
-  return lowercasedTitle.includes('covid') || lowercasedTitle.includes('corona')
-}
 
 interface HomeProps {
   categoriesInfo: Record<string, CategoryInfo>
@@ -129,10 +125,6 @@ export default function Home ({
       </div>
     </FilterProvider>
   )
-}
-
-function unsafeHead <T> (arr: T[]): T {
-  return arr[0]
 }
 
 export const getStaticProps: GetStaticProps = async () => {

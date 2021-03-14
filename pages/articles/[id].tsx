@@ -3,7 +3,8 @@ import {
   GetStaticPaths
 } from 'next'
 import { Header } from '../../components/Header'
-import { Article, Category, CategoryInfo } from '../../domain/interfaces'
+import { Article } from '../../domain/Article'
+import { Category, CategoryInfo } from '../../domain/Category'
 import Image from 'next/image'
 import categories from '../../fetchers/categories.preval'
 import { chain, map } from 'fp-ts/Array'
@@ -12,7 +13,7 @@ import { values } from 'fp-ts-std/Record'
 import { prop } from 'fp-ts-ramda'
 
 interface ArticlePageProps {
-  categoriesInfo: CategoryInfo[]
+  categoriesInfo: Record<string, CategoryInfo>
   article: Article
 }
 

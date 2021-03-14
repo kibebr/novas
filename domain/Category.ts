@@ -1,12 +1,4 @@
-export interface Article {
-  id: string
-  title: string
-  date: string
-  imgUrl: string
-  description: string
-  content: string
-  categoryName: CategoryTypes
-}
+import { Article } from './Article'
 
 export interface CategoryInfo {
   name: CategoryTypes
