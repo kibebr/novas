@@ -3,16 +3,19 @@ import { Header } from '../components/Header'
 import { ArticleCard } from '../components/ArticleCard'
 import { ArticleTopCard } from '../components/ArticleTopCard'
 import { CovidArticleCard } from '../components/CovidArticleCard'
+import { RectangularCard } from '../components/RectangularCard'
 import { Headline } from '../components/Headline'
 import { NavbarCategoryItem } from '../components/NavbarCategoryItem'
 import { Footer } from '../components/Footer'
-import { FilterProvider } from '../components/filters/FilterProvider'
+import { FilterProvider } from '../components/Filters/FilterProvider'
 import { Slider } from '../components/Slider'
 import { Navbar } from '../components/Navbar'
 import { Article, isCoronaRelated } from '../domain/Article'
 import { CategoryInfo } from '../domain/Category'
 import { randomElements, unsafeHead } from '../utils/Array'
+import { AbsoluteDarkenFilter } from '../components/Filters/DarkenFilter'
 import { colors } from '../components/colors'
+import Image from 'next/image'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
 import * as R from 'fp-ts/Record'
@@ -27,6 +30,7 @@ interface HomeProps {
   topArticles: Article[]
   covidArticles: Article[]
   entertainmentArticles: Article[]
+  scienceArticles: Article[]
   moreArticles: Article[]
 }
 
@@ -42,6 +46,7 @@ export default function Home ({
   topArticles,
   covidArticles,
   entertainmentArticles,
+  scienceArticles,
   moreArticles
 }: HomeProps): JSX.Element {
   return (
@@ -56,11 +61,11 @@ export default function Home ({
         </Navbar>
 
         <main>
-          <section tw='mt-10 max-w-screen-lg m-0 m-auto px-4 z-0'>
+          <section tw='max-w-screen-lg m-0 m-auto mt-10 px-4 z-0'>
             <Headline article={headline} />
           </section>
 
-          <section tw='flex flex-col items-start mt-24 max-w-screen-lg m-0 m-auto px-4'>
+          <section tw='flex flex-col items-start max-w-screen-lg m-0 m-auto mt-20 px-4'>
 
             <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
               TOP STORIES
@@ -77,19 +82,7 @@ export default function Home ({
             </div>
           </section>
 
-          <section tw='mt-24'>
-            <div tw='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
-              <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>ENTERTAINMENT</h2>
-              <div tw='flex justify-start md:justify-end border-b border-red-600 w-full'>
-                <a href='#' tw='text-gray-600 py-1 font-bold text-sm tracking-wider hover:underline'>SEE MORE ENTERTAINMENT →</a>
-              </div>
-            </div>
-
-            <div tw='bg-black h-96 mt-5'>
-            </div>
-          </section>
-
-          <section tw='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-2'>
+          <section tw='mt-24 flex flex-col bg-yellow-500 p-4 text-center space-y-2'>
             <h2 tw='font-bold font-caps text-white tracking-widest text-7xl md:text-9xl'>COVID-19</h2>
 
             <div tw='p-2 w-full transform -translate-y-8'>
@@ -109,8 +102,46 @@ export default function Home ({
                 <span tw='text-white'> COVID-19</span>
               </span>
             </a>
-
           </section>
+
+          <section tw='bg-black py-10 text-white'>
+            <div tw='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
+              <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>SCIENCE</h2>
+              <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.blue }}>
+                <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE SCIENCE →</a>
+              </div>
+            </div>
+
+            <div tw='bg-black mt-5 flex'>
+              <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
+                {scienceArticles.map((a) => (
+                  <RectangularCard tw='relative'>
+                    <Image
+                      tw='object-center object-cover z-0'
+                      src={`/.images/${a.id}.jpg`}
+                      layout='fill'
+                      alt={a.title}
+                      css={{ filter: 'sepia(30%) saturate(300%) hue-rotate(161deg) brightness(94%) contrast(150%)' }}
+                    />
+                    <AbsoluteDarkenFilter />
+                    <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
+                      <div tw='text-2xl'>
+                        {a.title.toUpperCase()}
+                      </div>
+                      <div tw='flex flex-row justify-between items-end'>
+                        <span>FEB 19TH</span>
+                        <div tw='flex flex-col items-end'>
+                          <ArrowRight tw='h-8 w-8' />
+                          <span>READ MORE</span>
+                        </div>
+                      </div>
+                    </div>
+                  </RectangularCard>
+                ))}
+              </Slider>
+            </div>
+          </section>
+
 
           <section tw='flex flex-col items-start items-center max-w-screen-lg m-0 m-auto mt-5 px-4'>
             <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
@@ -152,9 +183,21 @@ export const getStaticProps: GetStaticProps = async () => {
     A.chain(F.flow(prop('articles'), unsafeHead, A.of))
   )
 
-  const covidArticles = categories.health.articles.filter(isCoronaRelated)
+  const covidArticles: Article[] = categories.health.articles.filter(isCoronaRelated)
 
-  const entertainmentArticles = categories.entertainment.articles
+  const entertainmentArticles: Article[] = F.pipe(
+    categories,
+    prop('entertainment'),
+    prop('articles'),
+    A.takeLeft(10)
+  )
+
+  const scienceArticles: Article[] = F.pipe(
+    categories,
+    prop('science'),
+    prop('articles'),
+    A.takeLeft(10)
+  )
 
   const moreArticles = F.pipe(
     categories,
@@ -170,6 +213,7 @@ export const getStaticProps: GetStaticProps = async () => {
       topArticles,
       covidArticles,
       entertainmentArticles,
+      scienceArticles,
       moreArticles
     }
   }

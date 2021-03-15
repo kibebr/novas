@@ -18,7 +18,7 @@ export const Header = ({ borderColor, categories }: HeaderProps): JSX.Element =>
     <Container>
       <header
         tw='relative flex flex-row sticky p-2 md:(px-4 py-8) justify-between items-center border-b border-black z-50'
-        css={{ backgroundColor: borderColor }}
+        css={{ borderColor: borderColor }}
       >
         <div tw='relative'>
           <HeaderMenu

@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+import { AbsoluteDarkenFilter } from './Filters/DarkenFilter'
 import Image from 'next/image'
 import { Article } from '../domain/Article'
 import tw from 'twin.macro'
@@ -17,11 +18,10 @@ export const Headline: FunctionComponent<HeadlineProps> = ({ article }) => {
           layout='fill'
           alt={article.title}
         />
-        <div tw='absolute bg-black opacity-60 w-full h-full'>
-        </div>
-        <div tw='px-20 relative flex items-center text-center text-white font-bold flex-col h-full justify-evenly'>
+        <AbsoluteDarkenFilter />
+        <div tw='md:px-20 px-2 relative flex items-center text-center text-white font-bold flex-col h-full justify-evenly'>
           <span tw='text-xs tracking-widest'>{article.categoryName.toUpperCase()} | FEB, 19TH</span>
-          <h2 tw='text-3xl leading-loose md:leading-normal md:text-5xl font-serif hover:underline'>{article.title}</h2>
+          <h2 tw='text-3xl leading-normal md:(leading-none text-5xl) font-serif hover:underline'>{article.title}</h2>
         </div>
       </a>
     </div>

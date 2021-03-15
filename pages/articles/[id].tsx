@@ -11,6 +11,8 @@ import { chain, map } from 'fp-ts/Array'
 import { pipe, flow } from 'fp-ts/function'
 import { values } from 'fp-ts-std/Record'
 import { prop } from 'fp-ts-ramda'
+import { colors } from '../../components/colors'
+import tw from 'twin.macro'
 
 interface ArticlePageProps {
   categoriesInfo: Record<string, CategoryInfo>
@@ -20,23 +22,34 @@ interface ArticlePageProps {
 export default function ArticleComp ({ categoriesInfo, article }: ArticlePageProps): JSX.Element {
   return (
     <div>
-      <Header borderColor='border-purple-700' categories={categoriesInfo} />
+      <Header borderColor={colors[article.categoryName]} categories={categoriesInfo} />
 
-      <div className='max-w-screen-lg m-0 m-auto px-4 mt-5'>
-        <div className='text-sm font-bold'>
-          <span className='text-purple-700 border-r border-purple-700 pr-2 tracking-wider'>{article.categoryName.toUpperCase()}</span>
-          <span className='pl-2 text-gray-700 tracking-widest'>FEB, 19TH <span className='font-serif italic text-xs'>&nbsp; by &nbsp;</span> JOHN DOE</span>
+      <div tw='max-w-screen-lg m-0 m-auto px-4 mt-5'>
+        <div tw='text-sm font-bold'>
+          <span
+            tw='border-r border-purple-700 pr-2 tracking-wider'
+            css={{ color: `${colors[article.categoryName.toLowerCase()]}` }}
+          >
+            {article.categoryName.toUpperCase()}
+          </span>
+          <span tw='pl-2 text-gray-700 tracking-widest'>
+            FEB, 19TH
+            <span tw='font-serif italic text-xs'>
+              &nbsp; by &nbsp;
+            </span>
+            JOHN DOE
+          </span>
         </div>
-        <div className='flex flex-col border-b'>
-          <h1 className='font-serif font-bold text-3xl md:text-5xl mt-8'>
+        <div tw='flex flex-col border-b'>
+          <h1 tw='font-serif font-bold text-3xl md:text-5xl mt-8'>
             {article.title}
           </h1>
-          <p className='py-3 font-bold text-2xl'>
+          <p tw='py-3 font-bold text-2xl'>
             {article.description}
           </p>
         </div>
 
-        <article className='mt-5'>
+        <article tw='mt-5'>
           <div>
             <Image
               src={`/.images/${article.id}.jpg`}
@@ -45,7 +58,7 @@ export default function ArticleComp ({ categoriesInfo, article }: ArticlePagePro
               layout='responsive'
             />
           </div>
-          <div className='font-serif text-lg mt-10 text-gray-900 tracking-wide'>
+          <div tw='font-serif text-lg mt-10 text-gray-900 tracking-wide'>
             <p>
               {article.content}
             </p>

@@ -7,11 +7,11 @@ interface NavbarCategoryItemProps {
 }
 
 export const NavbarCategoryItem = ({ category }: NavbarCategoryItemProps): JSX.Element => (
-  <a href={`categories/${category.name}`} tw='flex flex-row items-center px-2 flex-shrink-0 border-r border-black'>
-    <div
-      tw='w-2 h-2 mr-2 rounded-full'
-      css={{ backgroundColor: colors[category.color] ?? 'black' }}
-    />
+  <a
+    href={`categories/${category.name}`}
+    tw='flex flex-row items-center px-2 flex-shrink-0 border-r border-black underline'
+    css={{ borderColor: `${colors[category.color]} !important` }}
+  >
     {category.name.toUpperCase()}
   </a>
 )

@@ -53,5 +53,6 @@ export const getCategoriesWithArticles = (): TaskEither<Error, Record<string, Ca
     amap((c) => ({ ...c, articles: c.articles.map((a) => toArticle(a, c.name as CategoryTypes)) })),
     (a) => normalize(a, new schema.Array(categorySchema)),
     (n) => n.entities.categories as Record<string, Category>
-  ))
+  )),
+  (a) => { console.log(a); return a }
 )

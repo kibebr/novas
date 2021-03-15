@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { Article } from '../domain/Article'
+import { colors } from './colors'
 import Zig from '../public/icons/zig.svg'
 import tw, { css, styled, theme, TwStyle } from 'twin.macro'
 
@@ -17,7 +18,8 @@ export const ArticleTopCard: FunctionComponent<ArticleTopCardProps> = ({ article
       {article.categoryName.toUpperCase()}
     </span>
     <div
-      tw='pb-4 text-xl md:text-xl leading-tight text-center font-serif font-bold hover:underline text-decoration-color[red]!'
+      tw='pb-4 text-xl md:text-xl leading-tight text-center font-serif font-bold hover:underline'
+      css={{ textDecorationColor: `${categoryColor} !important` }}
     >
       {article.title}
     </div>
