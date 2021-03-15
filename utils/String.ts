@@ -1,1 +1,1 @@
-export const capitalize = (s: string): string => s[0].toUpperCase() + s.substring(1)
+export const capitalize = ([x, ...xs]: string): string => x.toUpperCase().concat(xs.join(''))
