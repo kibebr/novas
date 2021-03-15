@@ -8,7 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig = {
-  webpack: config => {
+  webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.svg$/,
       loader: '@svgr/webpack',
@@ -17,6 +17,13 @@ const nextConfig = {
         icon: true
       }
     })
+
+    if (!isServer) {
+      config.node = {
+        fs: 'empty',
+        module: 'empty'
+      }
+    }
 
     return config
   },

@@ -1,11 +1,5 @@
-import { FunctionComponent, ReactNode } from 'react'
+import tw, { styled } from 'twin.macro'
 
-interface ContainerProps {
-  children: ReactNode
-}
-
-export const Container: FunctionComponent<ContainerProps> = ({ children }) => (
-  <div className='max-w-screen-lg m-0 m-auto'>
-    {children}
-  </div>
-)
+export const Container = styled.div`
+  ${tw`max-w-screen-lg m-0 m-auto`}
+`

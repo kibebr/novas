@@ -1,16 +1,19 @@
 import { ReactNode, FunctionComponent } from 'react'
+import tw, { TwStyle } from 'twin.macro'
+import { NoScrollbar } from './css/NoScrollbar'
 
 interface SliderProps {
-  classesChildren?: string
-  classesContainer?: string
+  classesChildren?: TwStyle
+  classesContainer?: TwStyle
   children: ReactNode
 }
+
 export const Slider: FunctionComponent<SliderProps> = ({ classesContainer, classesChildren, children }) => (
-  <div className={`flex overflow-y-hidden overflow-x-scroll no-scrollbar ${classesContainer as string}`}>
-    <div className='flex-1'></div>
-    <div className={`flex ${classesChildren as string}`}>
+  <div tw='flex overflow-y-hidden overflow-x-scroll' css={[NoScrollbar, classesContainer]}>
+    <div tw='flex-1'></div>
+    <div tw='flex' css={[classesChildren]}>
       {children}
     </div>
-    <div className='flex-1'></div>
+    <div tw='flex-1'></div>
   </div>
 )

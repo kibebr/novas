@@ -24,11 +24,11 @@ const categorySchema = new schema.Entity(
 
 const categoriesToSearchFor: Array<[ApiNewsCategory, string]> = [
   ['general', 'black'],
-  ['business', 'purple-600'],
-  ['science', 'blue-600'],
-  ['entertainment', 'pink-600'],
-  ['health', 'green-600'],
-  ['technology', 'red-600']
+  ['business', 'purple'],
+  ['science', 'blue'],
+  ['entertainment', 'pink'],
+  ['health', 'green'],
+  ['technology', 'red']
 ]
 
 const defaults: INewsApiTopHeadlinesParams = {

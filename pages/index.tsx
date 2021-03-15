@@ -12,11 +12,13 @@ import { Navbar } from '../components/Navbar'
 import { Article, isCoronaRelated } from '../domain/Article'
 import { CategoryInfo } from '../domain/Category'
 import { randomElements, unsafeHead } from '../utils/Array'
+import { colors } from '../components/colors'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
 import * as R from 'fp-ts/Record'
 import { prop } from 'fp-ts-ramda'
 import { values } from 'fp-ts-std/Record'
+import tw, { css } from 'twin.macro'
 import ArrowRight from '../public/icons/arrow-right.svg'
 
 interface HomeProps {
@@ -27,6 +29,12 @@ interface HomeProps {
   entertainmentArticles: Article[]
   moreArticles: Article[]
 }
+
+const insetCenter = css`
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`
 
 export default function Home ({
   categoriesInfo,
@@ -48,78 +56,78 @@ export default function Home ({
         </Navbar>
 
         <main>
-          <section className='mt-10 max-w-screen-lg m-0 m-auto px-4 z-0'>
+          <section tw='mt-10 max-w-screen-lg m-0 m-auto px-4 z-0'>
             <Headline article={headline} />
           </section>
 
-          <section className='flex flex-col items-start mt-24 max-w-screen-lg m-0 m-auto px-4'>
+          <section tw='flex flex-col items-start mt-24 max-w-screen-lg m-0 m-auto px-4'>
 
-            <h2 className='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
+            <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
               TOP STORIES
             </h2>
 
-            <div className='mt-8'>
-              <ul className='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
+            <div tw='mt-8'>
+              <ul tw='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
                 {topArticles.map((a) => (
-                  <a href='' className='flex'>
-                    <ArticleTopCard article={a} categoryColor={categoriesInfo[a.categoryName].color} />
+                  <a href='' tw='flex'>
+                    <ArticleTopCard article={a} categoryColor={colors[categoriesInfo[a.categoryName].color]} />
                   </a>
                 ))}
               </ul>
             </div>
           </section>
 
-          <section className='mt-24'>
-            <div className='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
-              <h2 className='font-caps text-2xl md:text-5xl font-bold mr-2'>ENTERTAINMENT</h2>
-              <div className='flex justify-start md:justify-end border-b border-red-600 w-full'>
-                <a href='#' className='text-gray-600 py-1 font-bold text-sm tracking-wider hover:underline'>SEE MORE ENTERTAINMENT →</a>
+          <section tw='mt-24'>
+            <div tw='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
+              <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>ENTERTAINMENT</h2>
+              <div tw='flex justify-start md:justify-end border-b border-red-600 w-full'>
+                <a href='#' tw='text-gray-600 py-1 font-bold text-sm tracking-wider hover:underline'>SEE MORE ENTERTAINMENT →</a>
               </div>
             </div>
 
-            <div className='bg-black h-96 mt-5'>
+            <div tw='bg-black h-96 mt-5'>
             </div>
           </section>
 
-          <section className='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-2'>
-            <h2 className='font-bold font-caps text-white tracking-widest text-7xl md:text-9xl'>COVID-19</h2>
+          <section tw='flex flex-col bg-yellow-500 mt-24 p-4 text-center space-y-2'>
+            <h2 tw='font-bold font-caps text-white tracking-widest text-7xl md:text-9xl'>COVID-19</h2>
 
-            <div className='p-2 w-full transform -translate-y-8'>
-              <Slider classesChildren='space-x-4 flex-no-wrap' classesContainer='p-1'>
+            <div tw='p-2 w-full transform -translate-y-8'>
+              <Slider classesChildren={tw`space-x-4 flex-nowrap`} classesContainer={tw`p-1`}>
                 {covidArticles.map((a) => (
                   <CovidArticleCard article={a} />
                 ))}
               </Slider>
             </div>
 
-            <a href='#' className='flex flex-col items-center text-center space-y-2'>
-              <div className='rounded-full relative bg-white p-2 w-14 h-14'>
-                <ArrowRight className='absolute inset-center text-black w-12 h-12' />
+            <a href='#' tw='flex flex-col items-center text-center space-y-2'>
+              <div tw='rounded-full relative bg-white p-2 w-14 h-14'>
+                <ArrowRight tw='absolute text-black w-12 h-12' css={insetCenter} />
               </div>
-              <span className='font-mono text-sm'>
+              <span tw='font-mono text-sm'>
                 READ MORE
-                <span className='text-white'> COVID-19</span>
+                <span tw='text-white'> COVID-19</span>
               </span>
             </a>
 
           </section>
 
-          <section className='flex flex-col items-start items-center max-w-screen-lg m-0 m-auto mt-5 px-4'>
-            <h2 className='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
+          <section tw='flex flex-col items-start items-center max-w-screen-lg m-0 m-auto mt-5 px-4'>
+            <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
               THE LATEST
             </h2>
-            <ul className='mt-5 space-y-8'>
+            <ul tw='mt-5 space-y-8'>
               {moreArticles.map((a) => (
                 <>
                   <ArticleCard article={a} categoryColor={categoriesInfo[a.categoryName].color} />
-                  <div className='border border-gray-100 h-px w-full'></div>
+                  <div tw='border border-gray-100 h-px w-full'></div>
                 </>
               ))}
             </ul>
           </section>
         </main>
 
-        <div className='flex-shrink-0 mt-10'>
+        <div tw='flex-shrink-0 mt-10'>
           <Footer />
         </div>
       </div>

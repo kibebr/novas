@@ -10,12 +10,14 @@ module.exports = {
         caps: 'Oswald'
       },
       colors: {
-        categoryColors: {
+        categories: {
           black: colors.black,
           red: colors.red[500],
           purple: colors.purple[500],
           blue: colors.blue[500],
-          yellow: colors.yellow[500]
+          yellow: colors.yellow[500],
+          green: colors.green[500],
+          pink: colors.pink[500]
         },
         black: {
           DEFAULT: '#000',

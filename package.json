@@ -37,8 +37,11 @@
     "@types/react": "^17.0.3",
     "@types/readable-stream": "^2.3.9",
     "@types/shortid": "0.0.29",
+    "@types/styled-components": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "archive-type": "^4.0.0",
+    "babel-plugin-macros": "^3.0.1",
+    "babel-plugin-styled-components": "^1.12.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.22.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
@@ -59,12 +62,15 @@
     "normalizr": "^3.6.1",
     "npm-run-all": "^4.1.5",
     "random-paragraph": "^1.0.4",
+    "react-is": "^16.13.1",
     "sass": "^1.32.8",
     "shortid": "^2.2.16",
+    "styled-components": "^5.2.1",
     "tailwindcss-filters": "^3.0.0",
     "tailwindcss-typography": "^3.1.0",
     "ts-jest": "^26.5.3",
     "ts-newsapi": "^1.0.0",
+    "twin.macro": "^2.3.0",
     "typescript": "^4.2.3"
   }
 }
