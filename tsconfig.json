@@ -27,6 +27,7 @@
     "twin.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "pages/_document.tsx"
   ]
 }

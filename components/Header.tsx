@@ -7,18 +7,18 @@ import SearchIcon from '../public/icons/search.svg'
 import tw, { css } from 'twin.macro'
 
 interface HeaderProps {
-  hasBorder: boolean
+  borderColor: string
   categories: Record<string, CategoryInfo>
 }
 
-export const Header = ({ hasBorder, categories }: HeaderProps): JSX.Element => {
+export const Header = ({ borderColor, categories }: HeaderProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
   return (
     <Container>
       <header
         tw='relative flex flex-row sticky p-2 md:(px-4 py-8) justify-between items-center border-b border-black z-50'
-        css={[hasBorder && tw`border-purple-600`]}
+        css={{ backgroundColor: borderColor }}
       >
         <div tw='relative'>
           <HeaderMenu
