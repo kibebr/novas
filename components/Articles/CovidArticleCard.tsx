@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
-import { Article } from '../domain/Article'
-import { Filter } from './Filters/Filter'
+import { Article } from '../../domain/Article'
+import { Filter } from '../Filters/Filter'
 import Image from 'next/image'
 import tw from 'twin.macro'
 

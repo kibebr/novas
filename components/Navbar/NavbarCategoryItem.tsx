@@ -1,4 +1,4 @@
-import { CategoryInfo } from '../domain/Category'
+import { CategoryInfo } from '../../domain/Category'
 import tw from 'twin.macro'
 
 interface NavbarCategoryItemProps {

@@ -2,7 +2,7 @@ import {
   GetStaticProps,
   GetStaticPaths
 } from 'next'
-import { Header } from '../../components/Header'
+import { Header } from '../../components/Header/Header'
 import { Article } from '../../domain/Article'
 import { Category, CategoryInfo } from '../../domain/Category'
 import Image from 'next/image'

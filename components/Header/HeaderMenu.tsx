@@ -1,9 +1,9 @@
-import { CategoryInfo } from '../domain/Category'
+import { CategoryInfo } from '../../domain/Category'
 import { MouseEventHandler } from 'react'
-import { capitalize } from '../utils/String'
-import { colors } from './colors'
+import { capitalize } from '../../utils/String'
+import { colors } from '../colors'
 import tw from 'twin.macro'
-import XIcon from '../public/icons/x.svg'
+import XIcon from '../../public/icons/x.svg'
 
 interface HeaderMenuProps {
   show: boolean

@@ -1,4 +1,4 @@
-import { Article } from '../domain/Article'
+import { Article } from '../../domain/Article'
 import Image from 'next/image'
 import tw from 'twin.macro'
 

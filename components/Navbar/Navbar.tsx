@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { Slider } from './Slider'
+import { Slider } from '../Slider'
 import tw from 'twin.macro'
 
 export const Navbar: FunctionComponent = ({ children }) => (

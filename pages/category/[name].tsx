@@ -5,10 +5,9 @@ import { colors } from '../../components/colors'
 import { values } from 'fp-ts-std/Record'
 import { prop } from 'fp-ts-ramda'
 import { Category, CategoryInfo } from '../../domain/Category'
-import { Header } from '../../components/Header'
+import { Header } from '../../components/Header/Header'
 import categories from '../../fetchers/categories.preval'
 import { Container } from '../../components/Container'
-import { AbsoluteDarkenFilter } from '../../components/Filters/DarkenFilter'
 import { Filter } from '../../components/Filters/Filter'
 import Image from 'next/image'
 import tw from 'twin.macro'
@@ -34,7 +33,6 @@ export default function CategoryComp ({ categoriesInfo, category }: CategoryProp
                 layout='fill'
               />
               <Filter color={colors[category.color]} />
-              <AbsoluteDarkenFilter />
             </div>
             <div tw='flex-1'>
             </div>

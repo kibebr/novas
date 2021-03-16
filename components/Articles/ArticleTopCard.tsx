@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
-import { Article } from '../domain/Article'
-import { colors } from './colors'
-import Zig from '../public/icons/zig.svg'
+import { Article } from '../../domain/Article'
+import { colors } from '../colors'
+import Zig from '../../public/icons/zig.svg'
 import tw, { css, styled, theme, TwStyle } from 'twin.macro'
 
 interface ArticleTopCardProps {

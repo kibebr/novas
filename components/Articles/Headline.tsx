@@ -1,8 +1,7 @@
 import { FunctionComponent } from 'react'
-import { Filter } from './Filters/Filter'
-import { AbsoluteDarkenFilter } from './Filters/DarkenFilter'
+import { Filter } from '../Filters/Filter'
 import Image from 'next/image'
-import { Article } from '../domain/Article'
+import { Article } from '../../domain/Article'
 import tw from 'twin.macro'
 
 interface HeadlineProps {

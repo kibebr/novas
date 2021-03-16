@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Container } from './Container'
-import { CategoryInfo } from '../domain/Category'
+import { Container } from '../Container'
+import { CategoryInfo } from '../../domain/Category'
 import { HeaderMenu } from './HeaderMenu'
-import TabsIcon from '../public/icons/menu.svg'
-import SearchIcon from '../public/icons/search.svg'
+import TabsIcon from '../../public/icons/menu.svg'
+import SearchIcon from '../../public/icons/search.svg'
 import tw, { css } from 'twin.macro'
 
 interface HeaderProps {
