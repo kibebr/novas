@@ -13,6 +13,7 @@ import { Navbar } from '../components/Navbar'
 import { Article, isCoronaRelated } from '../domain/Article'
 import { CategoryInfo } from '../domain/Category'
 import { randomElements, unsafeHead } from '../utils/Array'
+import { Container } from '../components/Container'
 import { AbsoluteDarkenFilter } from '../components/Filters/DarkenFilter'
 import { colors } from '../components/colors'
 import { Filter } from '../components/Filters/Filter'
@@ -64,25 +65,28 @@ export default function Home ({
         </Navbar>
 
         <main>
-          <section tw='max-w-screen-lg m-0 m-auto mt-10 px-4 z-0'>
-            <Headline article={headline} />
+          <section tw='mt-10 px-4 z-0'>
+            <Container>
+              <Headline article={headline} />
+            </Container>
           </section>
 
-          <section tw='flex flex-col items-start max-w-screen-lg m-0 m-auto mt-20 px-4'>
+          <section tw='flex flex-col items-start mt-20 px-4'>
+            <Container>
+              <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
+                TOP STORIES
+              </h2>
 
-            <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
-              TOP STORIES
-            </h2>
-
-            <div tw='mt-8'>
-              <ul tw='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
-                {topArticles.map((a) => (
-                  <a href='' tw='flex'>
-                    <ArticleTopCard article={a} categoryColor={colors[categoriesInfo[a.categoryName].color]} />
-                  </a>
-                ))}
-              </ul>
-            </div>
+              <div tw='mt-8'>
+                <ul tw='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
+                  {topArticles.map((a) => (
+                    <a href='' tw='flex'>
+                      <ArticleTopCard article={a} categoryColor={colors[categoriesInfo[a.categoryName].color]} />
+                    </a>
+                  ))}
+                </ul>
+              </div>
+            </Container>
           </section>
 
           <section tw='mt-24 flex flex-col bg-yellow-500 p-4 text-center space-y-2'>
@@ -108,12 +112,14 @@ export default function Home ({
           </section>
 
           <section tw='bg-black py-10 text-white'>
-            <div tw='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
-              <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>SCIENCE</h2>
-              <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.blue }}>
-                <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE SCIENCE →</a>
+            <Container>
+              <div tw='px-4 flex justify-between items-end flex-row'>
+                <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>SCIENCE</h2>
+                <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.blue }}>
+                  <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE SCIENCE →</a>
+                </div>
               </div>
-            </div>
+            </Container>
 
             <div tw='bg-black mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
@@ -148,12 +154,14 @@ export default function Home ({
           </section>
 
           <section tw='bg-black py-10 text-white'>
-            <div tw='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
-              <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>TECHNOLOGY</h2>
-              <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.red }}>
-                <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
+            <Container>
+              <div tw='px-4 flex justify-between items-end flex-row'>
+                <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>TECHNOLOGY</h2>
+                <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.red }}>
+                  <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
+                </div>
               </div>
-            </div>
+            </Container>
 
             <div tw='bg-black mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
@@ -187,18 +195,20 @@ export default function Home ({
             </div>
           </section>
 
-          <section tw='flex flex-col items-start items-center max-w-screen-lg m-0 m-auto mt-5 px-4'>
-            <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
-              THE LATEST
-            </h2>
-            <ul tw='mt-5 space-y-8'>
-              {moreArticles.map((a) => (
-                <>
-                  <ArticleCard article={a} categoryColor={categoriesInfo[a.categoryName].color} />
-                  <div tw='border border-gray-100 h-px w-full'></div>
-                </>
-              ))}
-            </ul>
+          <section tw='flex flex-col items-start items-center mt-5 px-4'>
+            <Container>
+              <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
+                THE LATEST
+              </h2>
+              <ul tw='mt-5 space-y-8'>
+                {moreArticles.map((a) => (
+                  <>
+                    <ArticleCard article={a} categoryColor={categoriesInfo[a.categoryName].color} />
+                    <div tw='border border-gray-100 h-px w-full'></div>
+                  </>
+                ))}
+              </ul>
+            </Container>
           </section>
         </main>
 
