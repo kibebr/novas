@@ -1,10 +1,9 @@
 import * as F from 'fp-ts/function'
-import { prop } from 'fp-ts-ramda'
+import * as R from 'fp-ts/Reader'
+import * as B from 'fp-ts/boolean'
+import * as M from 'fp-ts/Monoid'
 import { CategoryTypes } from './Category'
 import { toLower, contains } from 'fp-ts-std/String'
-import { MonoidAny } from 'fp-ts/boolean'
-import { concatAll } from 'fp-ts/Monoid'
-import { foldMap } from 'fp-ts/lib/Array'
 
 export interface Article {
   id: string
@@ -16,8 +15,12 @@ export interface Article {
   categoryName: CategoryTypes
 }
 
-export const isCoronaRelated: (a: Article) => boolean = F.flow(
-  prop('title'),
+export const isCoronaRelated = ({ title }: Article): boolean => F.pipe(
+  title,
   toLower,
-  (s) => s.includes('corona') || s.includes('covid')
+  R.sequenceArray([
+    contains('corona'),
+    contains('covid')
+  ]),
+  M.concatAll(B.MonoidAny)
 )
