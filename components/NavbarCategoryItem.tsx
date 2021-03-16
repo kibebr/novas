@@ -1,6 +1,5 @@
 import { CategoryInfo } from '../domain/Category'
-import { colors } from './colors'
-import tw, { css, theme, TwStyle } from 'twin.macro'
+import tw from 'twin.macro'
 
 interface NavbarCategoryItemProps {
   category: CategoryInfo
@@ -9,8 +8,7 @@ interface NavbarCategoryItemProps {
 export const NavbarCategoryItem = ({ category }: NavbarCategoryItemProps): JSX.Element => (
   <a
     href={`categories/${category.name}`}
-    tw='flex flex-row items-center px-2 flex-shrink-0 border-r border-black underline'
-    css={{ borderColor: `${colors[category.color]} !important` }}
+    tw='flex flex-row items-center px-2 flex-shrink-0 border-r border-black border-purple-600 underline font-light'
   >
     {category.name.toUpperCase()}
   </a>

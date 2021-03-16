@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { Article } from '../domain/Article'
+import { Filter } from './Filters/Filter'
 import Image from 'next/image'
 import tw from 'twin.macro'
 
@@ -16,12 +17,12 @@ export const CovidArticleCard: FunctionComponent<CovidArticleCardProps> = ({ art
       layout='fill'
       alt={article.title}
     />
-    <div tw='absolute w-full h-full bg-black z-10 opacity-50'></div>
+    <Filter color='black' tw='opacity-60' />
     <div tw='w-full h-full z-50 flex flex-col justify-evenly p-2 text-white'>
       <div tw='font-mono text-sm'>
         YESTERDAY
       </div>
-      <div tw='font-caps text-3xl'>
+      <div tw='font-caps text-4xl tracking-tight'>
         {article.title.toUpperCase()}
       </div>
       <a href='#' tw='font-mono text-sm hover:underline'>

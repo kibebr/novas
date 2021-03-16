@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro'
 
 interface FilterProps {
-  color?: string
+  color: string
 }
 
 export const Filter = styled.div<FilterProps>`

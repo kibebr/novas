@@ -32,6 +32,7 @@ interface HomeProps {
   covidArticles: Article[]
   entertainmentArticles: Article[]
   scienceArticles: Article[]
+  technologyArticles: Article[]
   moreArticles: Article[]
 }
 
@@ -47,6 +48,7 @@ export default function Home ({
   topArticles,
   covidArticles,
   entertainmentArticles,
+  technologyArticles,
   scienceArticles,
   moreArticles
 }: HomeProps): JSX.Element {
@@ -116,33 +118,74 @@ export default function Home ({
             <div tw='bg-black mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
                 {scienceArticles.map((a) => (
-                  <RectangularCard tw='relative'>
-                    <Image
-                      tw='object-center object-cover z-0'
-                      src={`/.images/${a.id}.jpg`}
-                      layout='fill'
-                      alt={a.title}
-                    />
-                    <Filter color={colors[categoriesInfo.science.color]} />
-                    <AbsoluteDarkenFilter />
-                    <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
-                      <div tw='text-2xl'>
-                        {a.title.toUpperCase()}
-                      </div>
-                      <div tw='flex flex-row justify-between items-end'>
-                        <span>FEB 19TH</span>
-                        <div tw='flex flex-col items-end'>
-                          <ArrowRight tw='h-8 w-8' />
-                          <span>READ MORE</span>
+                  <RectangularCard color={colors[categoriesInfo.science.color]} tw='relative'>
+                    <a href={`/articles/${a.id}`}>
+                      <Image
+                        tw='object-center object-cover z-0'
+                        src={`/.images/${a.id}.jpg`}
+                        layout='fill'
+                        alt={a.title}
+                      />
+                      <Filter color={colors[categoriesInfo.science.color]} tw='opacity-10' />
+                      <Filter color='black' tw='opacity-50' />
+                      <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
+                        <div tw='text-2xl'>
+                          {a.title.toUpperCase()}
+                        </div>
+                        <div tw='flex flex-row justify-between items-end font-light'>
+                          <span>FEB 19TH</span>
+                          <div tw='flex flex-col items-end'>
+                            <ArrowRight tw='h-8 w-8' />
+                            <span tw='text-sm'>READ MORE</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </a>
                   </RectangularCard>
                 ))}
               </Slider>
             </div>
           </section>
 
+          <section tw='bg-black py-10 text-white'>
+            <div tw='px-4 flex justify-between items-end flex-row max-w-screen-lg m-0 m-auto'>
+              <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>TECHNOLOGY</h2>
+              <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.red }}>
+                <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
+              </div>
+            </div>
+
+            <div tw='bg-black mt-5 flex'>
+              <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
+                {scienceArticles.map((a) => (
+                  <RectangularCard color={colors[categoriesInfo.technology.color]} tw='relative'>
+                    <a href={`/articles/${a.id}`}>
+                      <Image
+                        tw='object-center object-cover z-0'
+                        src={`/.images/${a.id}.jpg`}
+                        layout='fill'
+                        alt={a.title}
+                      />
+                      <Filter color={colors[categoriesInfo.technology.color]} />
+                      <Filter color='black' tw='opacity-70' />
+                      <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
+                        <div tw='text-2xl'>
+                          {a.title.toUpperCase()}
+                        </div>
+                        <div tw='flex flex-row justify-between items-end font-light'>
+                          <span>FEB 19TH</span>
+                          <div tw='flex flex-col items-end'>
+                            <ArrowRight tw='h-8 w-8' />
+                            <span tw='text-sm'>READ MORE</span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </RectangularCard>
+                ))}
+              </Slider>
+            </div>
+          </section>
 
           <section tw='flex flex-col items-start items-center max-w-screen-lg m-0 m-auto mt-5 px-4'>
             <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
