@@ -30,6 +30,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.8",
     "@svgr/webpack": "^5.5.0",
+    "@tailwindcss/jit": "^0.1.1",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.34",
     "@types/react": "^17.0.3",

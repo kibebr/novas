@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 
 export const DarkGoldFilter: FunctionComponent = () => (
-  <svg id='_gold-sunset' xmlns="http://www.w3.org/2000/svg" className='hidden'>
+  <svg xmlns="http://www.w3.org/2000/svg">
     <filter id="gold-sunset" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
       <feColorMatrix type="matrix" values=".33 .33 .33 0 0
         .33 .33 .33 0 0

@@ -21,7 +21,7 @@ export const HeaderMenu = ({ show, onClose, categories }: HeaderMenuProps): JSX.
     </button>
     <div tw='p-2 flex flex-col space-y-2'>
       {Object.values(categories).map(({ color, name }) => (
-        <a href={`/categories/${name}`} tw='font-bold text-3xl flex flex-row space-x-3'>
+        <a href={`/category/${name}`} tw='font-bold text-3xl flex flex-row space-x-3'>
           <span css={{ color: colors[color] }}>/</span>
           <span tw='underline'>{capitalize(name)}</span>
         </a>

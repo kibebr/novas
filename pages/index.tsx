@@ -15,6 +15,7 @@ import { CategoryInfo } from '../domain/Category'
 import { randomElements, unsafeHead } from '../utils/Array'
 import { AbsoluteDarkenFilter } from '../components/Filters/DarkenFilter'
 import { colors } from '../components/colors'
+import { Filter } from '../components/Filters/Filter'
 import Image from 'next/image'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
@@ -121,8 +122,8 @@ export default function Home ({
                       src={`/.images/${a.id}.jpg`}
                       layout='fill'
                       alt={a.title}
-                      css={{ filter: 'sepia(30%) saturate(300%) hue-rotate(161deg) brightness(94%) contrast(150%)' }}
                     />
+                    <Filter color={colors[categoriesInfo.science.color]} />
                     <AbsoluteDarkenFilter />
                     <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
                       <div tw='text-2xl'>
