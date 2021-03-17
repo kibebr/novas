@@ -1,4 +1,5 @@
 import { Article } from '../../domain/Article'
+import { ArticleTape } from './ArticleTape'
 import Image from 'next/image'
 import tw from 'twin.macro'
 
@@ -17,6 +18,7 @@ export const ArticleCard = ({ article, categoryColor }: ArticleCardProps): JSX.E
           layout='fill'
           alt={article.title}
         />
+        <ArticleTape color={categoryColor} />
       </div>
       <div tw='w-3/4'>
         <span tw='font-bold text-xs md:text-sm tracking-wider mb-3'>

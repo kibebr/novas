@@ -6,6 +6,7 @@ import { CovidArticleCard } from '../components/Articles/CovidArticleCard'
 import { RectangularCard } from '../components/RectangularCard'
 import { Headline } from '../components/Articles/Headline'
 import { NavbarCategoryItem } from '../components/Navbar/NavbarCategoryItem'
+import { SectionArticleHeadline } from '../components/Articles/SectionArticleHeadline'
 import { Footer } from '../components/Footer'
 import { FilterProvider } from '../components/Filters/FilterProvider'
 import { Slider } from '../components/Slider'
@@ -16,6 +17,7 @@ import { randomElements, unsafeHead } from '../utils/Array'
 import { Container } from '../components/Container'
 import { colors } from '../components/colors'
 import { Filter } from '../components/Filters/Filter'
+import { hexToRgb } from '../utils/Color'
 import Image from 'next/image'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
@@ -70,16 +72,16 @@ export default function Home ({
             </Container>
           </section>
 
-          <section tw='flex flex-col items-start mt-20 px-4'>
-            <Container>
+          <section tw='mt-20 px-4'>
+            <Container tw='flex flex-col items-center'>
               <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
                 TOP STORIES
               </h2>
 
               <div tw='mt-8'>
-                <ul tw='flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-4'>
+                <ul tw='flex flex-col space-y-8 md:(flex-row space-y-0 space-x-4)'>
                   {topArticles.map((a) => (
-                    <a href='' tw='flex'>
+                    <a href='' tw='flex flex-1'>
                       <ArticleTopCard article={a} categoryColor={colors[categoriesInfo[a.categoryName].color]} />
                     </a>
                   ))}
@@ -88,10 +90,10 @@ export default function Home ({
             </Container>
           </section>
 
-          <section tw='mt-24 flex flex-col bg-yellow-500 p-4 text-center space-y-2'>
+          <section tw='mt-24 flex flex-col bg-yellow-500 py-10 text-center space-y-2'>
             <h2 tw='font-bold font-caps text-white tracking-widest text-7xl md:text-9xl'>COVID-19</h2>
 
-            <div tw='p-2 w-full transform -translate-y-8'>
+            <div tw='pl-2 w-full transform -translate-y-8'>
               <Slider classesChildren={tw`space-x-4 flex-nowrap`} classesContainer={tw`p-1`}>
                 {covidArticles.map((a) => (
                   <CovidArticleCard article={a} />
@@ -99,20 +101,22 @@ export default function Home ({
               </Slider>
             </div>
 
-            <a href='#' tw='flex flex-col items-center text-center space-y-2'>
-              <div tw='rounded-full relative bg-white p-2 w-14 h-14'>
-                <ArrowRight tw='absolute text-black w-12 h-12' css={insetCenter} />
+            <div tw='flex justify-center mt-5'>
+              <div tw='flex flex-col items-center space-y-2'>
+                <div tw='text-white bg-black p-2 rounded-full'>
+                  <ArrowRight tw='w-10 h-10'/>
+                </div>
+                <span tw='font-mono font-light'>
+                  READ MORE
+                  <span tw='text-white'> COVID</span>
+                </span>
               </div>
-              <span tw='font-mono text-sm'>
-                READ MORE
-                <span tw='text-white'> COVID-19</span>
-              </span>
-            </a>
+            </div>
           </section>
 
           <section tw='bg-black py-10 text-white'>
             <Container>
-              <div tw='px-4 flex justify-between items-end flex-row'>
+              <div tw='sm:px-4 flex justify-between items-end flex-row'>
                 <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>SCIENCE</h2>
                 <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.blue }}>
                   <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE SCIENCE →</a>
@@ -120,10 +124,20 @@ export default function Home ({
               </div>
             </Container>
 
-            <div tw='bg-black mt-5 flex'>
+            <Container tw='mt-5'>
+              <SectionArticleHeadline
+                article={scienceArticles[0]}
+                categoryColor={colors[categoriesInfo.science.color]}
+              />
+            </Container>
+
+            <div tw='mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
                 {scienceArticles.map((a) => (
-                  <RectangularCard color={colors[categoriesInfo.science.color]} tw='relative'>
+                  <RectangularCard
+                    color={hexToRgb(colors[categoriesInfo.science.color])}
+                    tw='relative'
+                  >
                     <a href={`/articles/${a.id}`}>
                       <Image
                         tw='object-center object-cover z-0'
@@ -131,8 +145,8 @@ export default function Home ({
                         layout='fill'
                         alt={a.title}
                       />
-                      <Filter color={colors[categoriesInfo.science.color]} tw='opacity-10' />
-                      <Filter color='black' tw='opacity-50' />
+                      <Filter color={colors[categoriesInfo.science.color]} />
+                      <Filter color='black' tw='opacity-60' />
                       <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
                         <div tw='text-2xl'>
                           {a.title.toUpperCase()}
@@ -150,22 +164,41 @@ export default function Home ({
                 ))}
               </Slider>
             </div>
+
+            <div tw='flex justify-center mt-5'>
+              <div tw='flex flex-col items-center space-y-2'>
+                <div tw='text-black bg-white p-2 rounded-full'>
+                  <ArrowRight tw='w-10 h-10'/>
+                </div>
+                <span tw='font-caps font-light'>READ MORE SCIENCE</span>
+              </div>
+            </div>
           </section>
 
-          <section tw='bg-black py-10 text-white'>
+          <section tw='bg-red-100 py-10 text-black'>
             <Container>
               <div tw='px-4 flex justify-between items-end flex-row'>
                 <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>TECHNOLOGY</h2>
                 <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.red }}>
-                  <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
+                  <a href='#' tw='text-gray-900 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
                 </div>
               </div>
             </Container>
 
-            <div tw='bg-black mt-5 flex'>
+            <Container tw='mt-5'>
+              <SectionArticleHeadline
+                article={technologyArticles[0]}
+                categoryColor={colors[categoriesInfo.technology.color]}
+              />
+            </Container>
+
+            <div tw='mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
-                {scienceArticles.map((a) => (
-                  <RectangularCard color={colors[categoriesInfo.technology.color]} tw='relative'>
+                {technologyArticles.map((a) => (
+                  <RectangularCard
+                    color={hexToRgb(colors[categoriesInfo.technology.color])}
+                    tw='relative'
+                  >
                     <a href={`/articles/${a.id}`}>
                       <Image
                         tw='object-center object-cover z-0'
@@ -192,10 +225,19 @@ export default function Home ({
                 ))}
               </Slider>
             </div>
+
+            <div tw='flex justify-center mt-5'>
+              <div tw='flex flex-col items-center space-y-2'>
+                <div tw='text-white bg-black p-2 rounded-full'>
+                  <ArrowRight tw='w-10 h-10'/>
+                </div>
+                <span tw='font-caps font-light'>READ MORE TECHNOLOGY</span>
+              </div>
+            </div>
           </section>
 
-          <section tw='flex flex-col items-start items-center mt-5 px-4'>
-            <Container>
+          <section tw='mt-5 px-4'>
+            <Container tw='flex flex-col items-start items-center'>
               <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
                 THE LATEST
               </h2>
@@ -245,6 +287,13 @@ export const getStaticProps: GetStaticProps = async () => {
     A.takeLeft(10)
   )
 
+  const technologyArticles: Article[] = F.pipe(
+    categories,
+    prop('technology'),
+    prop('articles'),
+    A.takeLeft(10)
+  )
+
   const scienceArticles: Article[] = F.pipe(
     categories,
     prop('science'),
@@ -266,6 +315,7 @@ export const getStaticProps: GetStaticProps = async () => {
       topArticles,
       covidArticles,
       entertainmentArticles,
+      technologyArticles,
       scienceArticles,
       moreArticles
     }
