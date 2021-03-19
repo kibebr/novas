@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--insecure-http-parser' next dev",
     "next:build": "next build",
     "next:export": "next export",
     "build": "run-s rm:tmpimages mk:tmpimages next:build next:export",
@@ -24,14 +24,14 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "readable-stream": "^3.6.0",
-    "swr": "^0.5.3",
-    "tailwindcss": "^2.0.3"
+    "swr": "^0.5.4",
+    "tailwindcss": "^2.0.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.9",
     "@svgr/webpack": "^5.5.0",
-    "@tailwindcss/jit": "^0.1.1",
-    "@types/jest": "^26.0.20",
+    "@tailwindcss/jit": "^0.1.4",
+    "@types/jest": "^26.0.21",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "@types/shortid": "0.0.29",
@@ -62,7 +62,7 @@
     "styled-components": "^5.2.1",
     "tailwindcss-filters": "^3.0.0",
     "tailwindcss-typography": "^3.1.0",
-    "ts-jest": "^26.5.3",
+    "ts-jest": "^26.5.4",
     "ts-newsapi": "^1.0.0",
     "twin.macro": "^2.3.0",
     "typescript": "^4.2.3"

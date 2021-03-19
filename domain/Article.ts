@@ -2,7 +2,6 @@ import * as F from 'fp-ts/function'
 import * as R from 'fp-ts/Reader'
 import * as B from 'fp-ts/boolean'
 import * as M from 'fp-ts/Monoid'
-import { CategoryTypes } from './Category'
 import { toLower, contains } from 'fp-ts-std/String'
 
 export interface Article {
@@ -12,7 +11,7 @@ export interface Article {
   imgUrl: string
   description: string
   content: string
-  categoryName: CategoryTypes
+  categoryName: string
 }
 
 export const isCoronaRelated = ({ title }: Article): boolean => F.pipe(
