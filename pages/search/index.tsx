@@ -1,3 +1,8 @@
+import * as A from 'fp-ts/Array'
+import * as F from 'fp-ts/function'
+import * as RE from 'fp-ts/Record'
+import * as STDRE from 'fp-ts-std/Record'
+import { colors } from '../../components/colors'
 import { GetStaticProps } from 'next'
 import { Header } from '../../components/Header/Header'
 import { Footer } from '../../components/Footer'
@@ -7,9 +12,7 @@ import { Article } from '../../domain/Article'
 import { CategoryInfo } from '../../domain/Category'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { values } from 'fp-ts-std/Record'
-import { map } from 'fp-ts/Array'
-import { pipe } from 'fp-ts/function'
+import tw from 'twin.macro'
 import useSWR from 'swr'
 
 interface SearchProps {
@@ -19,6 +22,7 @@ interface SearchProps {
 export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
   const router = useRouter()
   const [foundArticles, setFoundArticles] = useState<Article[]>([])
+  const [searchTerm, setSearchTerm] = useState<string | null>(null)
   const [query, setQuery] = useState<string | undefined>(undefined)
   const { data } = useSWR(`/api/articles/${encodeURIComponent(query ?? '')}`, fetch)
 
@@ -33,35 +37,43 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
       .catch((err) => console.error(err))
   }, [data])
 
-  const search = (query: string): void => {
+  useEffect((): () => void => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm !== null) {
+        setQuery(searchTerm)
+      }
+    }, 500)
 
-  }
+    return () => clearTimeout(delayDebounceFn)
+  }, [searchTerm])
 
+  console.log(categoriesInfo)
   return (
     <div>
       <Header borderColor='border-blue-600' categories={categoriesInfo} />
 
-      <main className='min-h-screen'>
+      <main tw='min-h-screen'>
         <Container>
-          <div className='px-4'>
-            <div className='mt-10'></div>
+          <div tw='px-4'>
 
-            <div className='text-center'>
+            <div tw='mt-10'></div>
+
+            <div tw='text-center'>
               <input
                 placeholder='Search for articles'
-                className='text-center font-bold text-5xl md:text-6xl w-full'
-                onChange={(e): void => setQuery(e.target.value)}
+                tw='text-center font-bold text-5xl md:text-6xl w-full'
+                onChange={({ target }): void => setSearchTerm(target.value)}
               />
 
               {foundArticles.length !== 0 && (
-                <p className='mt-3 text-md md:text-lg tracking-widest'>SEARCH RESULTS</p>
+                <p tw='mt-3 md:text-lg tracking-widest'>SEARCH RESULTS</p>
               )}
             </div>
 
-            <ul className='mt-10 space-y-8'>
+            <ul tw='mt-10 space-y-8'>
               {foundArticles.map((a) => (
-                <li>
-                  <ArticleCard article={a} categoryColor={categoriesInfo[a.categoryName].color}/>
+                <li key={a.id}>
+                  <ArticleCard article={a} categoryColor={colors[categoriesInfo[a.categoryName].color]} />
                 </li>
               ))}
             </ul>
@@ -69,7 +81,7 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
         </Container>
       </main>
 
-      <div className='mt-10'></div>
+      <div tw='mt-10'></div>
 
       <Footer />
     </div>
@@ -81,7 +93,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      categoriesInfo: pipe(categories, values, map((c) => ({ name: c.name, color: c.color })))
+      categoriesInfo: F.pipe(
+        categories,
+        RE.map(STDRE.pick<CategoryInfo>()(['name', 'color']))
+      )
     }
   }
 }
