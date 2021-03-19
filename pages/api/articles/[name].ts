@@ -1,23 +1,24 @@
+import * as F from 'fp-ts/function'
+import * as STDRE from 'fp-ts-std/Record'
+import * as STDS from 'fp-ts-std/String'
+import * as R from 'fp-ts-ramda'
+import * as A from 'fp-ts/Array'
 import { NextApiHandler } from 'next'
 import { Article } from '../../../domain/Article'
-import { flow, pipe } from 'fp-ts/function'
-import { values } from 'fp-ts-std/Record'
-import { contains, toLower } from 'fp-ts-std/String'
-import { chain, filter } from 'fp-ts/Array'
-import { prop } from 'fp-ts-ramda'
 import categories from '../../../fetchers/categories.preval'
 
 const handler: NextApiHandler<Article[]> = (req, res) => {
-  const articles: Article[] = pipe(
+  const articles: Article[] = F.pipe(
     categories,
-    values,
-    chain(prop('articles')),
-    filter(flow(
-      prop('title'),
-      toLower,
-      contains(req.query?.name as string)
+    STDRE.values,
+    A.chain(R.prop('articles')),
+    A.filter(F.flow(
+      R.prop('title'),
+      STDS.toLower,
+      STDS.contains(F.pipe(req.query?.name as string, STDS.toLower))
     ))
   )
+
   res.status(200).send(articles)
 }
 

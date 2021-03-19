@@ -47,7 +47,6 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
     return () => clearTimeout(delayDebounceFn)
   }, [searchTerm])
 
-  console.log(categoriesInfo)
   return (
     <div>
       <Header borderColor='border-blue-600' categories={categoriesInfo} />
