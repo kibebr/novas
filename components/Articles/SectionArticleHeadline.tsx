@@ -22,7 +22,7 @@ export const SectionArticleHeadline = ({ article, categoryColor }: SectionArticl
       />
       <Filter color={categoryColor} tw='opacity-50'/>
       <Filter color='black' tw='opacity-60' />
-      <div tw='p-4 absolute flex flex-col justify-end h-full w-full font-caps'>
+      <div tw='p-4 absolute flex flex-col justify-end h-full w-full font-serif'>
         <span tw='text-5xl hover:underline'>{article.title.toUpperCase()}</span>
       </div>
     </a>

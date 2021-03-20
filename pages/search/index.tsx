@@ -49,7 +49,7 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
 
   return (
     <div>
-      <Header borderColor='border-blue-600' categories={categoriesInfo} />
+      <Header accentColor='blue' categories={categoriesInfo} />
 
       <main tw='min-h-screen'>
         <Container>

@@ -17,7 +17,7 @@ import { randomElements, unsafeHead } from '../utils/Array'
 import { Container } from '../components/Container'
 import { colors } from '../components/colors'
 import { Filter } from '../components/Filters/Filter'
-import { hexToRgb } from '../utils/Color'
+import { RGB, hexToRgb } from '../utils/Color'
 import Image from 'next/image'
 import * as A from 'fp-ts/Array'
 import * as F from 'fp-ts/function'
@@ -57,7 +57,7 @@ export default function Home ({
   return (
     <FilterProvider>
       <div>
-        <Header borderColor='border-black' categories={categoriesInfo} />
+        <Header accentColor='black' categories={categoriesInfo} />
 
         <Navbar>
           {Object.values(categoriesInfo).map((c) => (
@@ -138,7 +138,7 @@ export default function Home ({
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
                 {scienceArticles.slice(1).map((a) => (
                   <RectangularCard
-                    color={hexToRgb(colors[categoriesInfo.science.color])}
+                    color={hexToRgb(colors[categoriesInfo.science.color]) as string & RGB}
                     tw='relative'
                   >
                     <a href={`/articles/${a.id}`}>
@@ -199,7 +199,7 @@ export default function Home ({
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
                 {technologyArticles.slice(1).map((a) => (
                   <RectangularCard
-                    color={hexToRgb(colors[categoriesInfo.technology.color])}
+                    color={hexToRgb(colors[categoriesInfo.technology.color]) as string & RGB}
                     tw='relative'
                   >
                     <a href={`/articles/${a.id}`}>
