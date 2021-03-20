@@ -36,7 +36,7 @@ export const Header = ({ accentColor, categories }: HeaderProps): JSX.Element =>
         </div>
         <a href='/#' tw='flex flex-col items-center'>
           <h1
-            tw='font-medium text-5xl md:text-7xl font-caps italic bg-black text-white overflow-hidden'
+            tw='font-medium text-5xl md:text-7xl font-caps italic bg-black text-white overflow-hidden' className='font-caps'
           >
             NOVAS
           </h1>

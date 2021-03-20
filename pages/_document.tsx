@@ -32,7 +32,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link href="https://db.onlinewebfonts.com/c/afd4ddebaf5580b6e2268547a84e264d?family=Amerigo+BT" rel="stylesheet" type="text/css"/>
           <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&display=swap" rel="stylesheet" />
           <title>Novas</title>
         </Head>

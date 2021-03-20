@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
+  @font-face {
+    font-family: "Amerigo BT";
+    src: url("https://db.onlinewebfonts.com/t/afd4ddebaf5580b6e2268547a84e264d.woff2") format("woff2");
+  }
+
   .bg-blur {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: saturate(180%) blur(20px);
