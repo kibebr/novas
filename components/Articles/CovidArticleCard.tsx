@@ -9,7 +9,7 @@ interface CovidArticleCardProps {
 }
 
 export const CovidArticleCard: FunctionComponent<CovidArticleCardProps> = ({ article }) => (
-  <div tw='relative flex flex-shrink-0 flex-col w-72 h-72 md:h-112 md:w-112 border border-black shadow-side-black'>
+  <div tw='relative flex flex-shrink-0 flex-col w-72 h-72 md:h-112 md:w-120 border border-black shadow-side-black'>
     <Image
       tw='object-center object-cover z-0'
       css={{ filter: 'url(#gold-sunset)' }}

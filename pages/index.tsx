@@ -61,20 +61,20 @@ export default function Home ({
 
         <Navbar>
           {Object.values(categoriesInfo).map((c) => (
-            <NavbarCategoryItem category={c} />
+            <NavbarCategoryItem key={c.name} category={c} />
           ))}
         </Navbar>
 
         <main>
           <section tw='mt-10 px-4 z-0'>
             <Container>
-              <Headline article={headline} />
+              <Headline article={scienceArticles[0]} />
             </Container>
           </section>
 
           <section tw='mt-20 px-4'>
             <Container tw='flex flex-col items-center'>
-              <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-caps border-purple-600 border p-2'>
+              <h2 tw='font-bold text-xl mt-0 m-auto md:text-2xl font-barlow border-purple-600 border p-2'>
                 TOP STORIES
               </h2>
 
@@ -90,7 +90,7 @@ export default function Home ({
             </Container>
           </section>
 
-          <section tw='mt-24 flex flex-col bg-yellow-500 py-10 text-center space-y-2'>
+          <section tw='mt-24 bg-yellow-500 py-10 text-center space-y-2'>
             <h2 tw='font-bold font-caps text-white tracking-widest text-7xl md:text-9xl'>COVID-19</h2>
 
             <div tw='pl-2 w-full transform -translate-y-8'>
@@ -117,9 +117,9 @@ export default function Home ({
           <section tw='bg-black py-10 text-white'>
             <Container>
               <div tw='sm:px-4 flex justify-between items-end flex-row'>
-                <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>SCIENCE</h2>
+                <h2 tw='font-barlow text-2xl md:text-5xl font-bold mr-2'>SCIENCE</h2>
                 <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.blue }}>
-                  <a href='#' tw='text-gray-300 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE SCIENCE →</a>
+                  <a href='#' tw='text-gray-300 py-1 font-barlow text-sm tracking-wider hover:underline'>SEE MORE SCIENCE →</a>
                 </div>
               </div>
             </Container>
@@ -133,7 +133,7 @@ export default function Home ({
 
             <div tw='mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
-                {scienceArticles.map((a) => (
+                {scienceArticles.slice(1).map((a) => (
                   <RectangularCard
                     color={hexToRgb(colors[categoriesInfo.science.color])}
                     tw='relative'
@@ -147,7 +147,7 @@ export default function Home ({
                       />
                       <Filter color={colors[categoriesInfo.science.color]} />
                       <Filter color='black' tw='opacity-60' />
-                      <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
+                      <div tw='font-barlow absolute p-5 h-full flex flex-col justify-between z-10'>
                         <div tw='text-2xl'>
                           {a.title.toUpperCase()}
                         </div>
@@ -170,7 +170,7 @@ export default function Home ({
                 <div tw='text-black bg-white p-2 rounded-full'>
                   <ArrowRight tw='w-10 h-10'/>
                 </div>
-                <span tw='font-caps font-light'>READ MORE SCIENCE</span>
+                <span tw='font-barlow font-light'>READ MORE SCIENCE</span>
               </div>
             </div>
           </section>
@@ -178,9 +178,9 @@ export default function Home ({
           <section tw='bg-red-100 py-10 text-black'>
             <Container>
               <div tw='px-4 flex justify-between items-end flex-row'>
-                <h2 tw='font-caps text-2xl md:text-5xl font-bold mr-2'>TECHNOLOGY</h2>
+                <h2 tw='font-barlow text-2xl md:text-5xl font-bold mr-2'>TECHNOLOGY</h2>
                 <div tw='flex justify-start md:justify-end border-b w-full' css={{ borderColor: colors.red }}>
-                  <a href='#' tw='text-gray-900 py-1 font-caps text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
+                  <a href='#' tw='text-gray-900 py-1 font-barlow text-sm tracking-wider hover:underline'>SEE MORE TECHNOLOGY →</a>
                 </div>
               </div>
             </Container>
@@ -194,7 +194,7 @@ export default function Home ({
 
             <div tw='mt-5 flex'>
               <Slider classesChildren={tw`space-x-8`} classesContainer={tw`p-4`}>
-                {technologyArticles.map((a) => (
+                {technologyArticles.slice(1).map((a) => (
                   <RectangularCard
                     color={hexToRgb(colors[categoriesInfo.technology.color])}
                     tw='relative'
@@ -208,7 +208,7 @@ export default function Home ({
                       />
                       <Filter color={colors[categoriesInfo.technology.color]} />
                       <Filter color='black' tw='opacity-70' />
-                      <div tw='font-caps absolute p-5 h-full flex flex-col justify-between z-10'>
+                      <div tw='font-barlow absolute p-5 h-full flex flex-col justify-between z-10'>
                         <div tw='text-2xl'>
                           {a.title.toUpperCase()}
                         </div>
@@ -231,14 +231,14 @@ export default function Home ({
                 <div tw='text-white bg-black p-2 rounded-full'>
                   <ArrowRight tw='w-10 h-10'/>
                 </div>
-                <span tw='font-caps font-light'>READ MORE TECHNOLOGY</span>
+                <span tw='font-barlow font-light'>READ MORE TECHNOLOGY</span>
               </div>
             </div>
           </section>
 
           <section tw='mt-5 px-4'>
             <Container tw='flex flex-col items-start items-center'>
-              <h2 tw='font-bold text-xl md:text-2xl font-caps border-purple-600 border p-2'>
+              <h2 tw='font-bold text-xl md:text-2xl font-barlow border-purple-600 border p-2'>
                 THE LATEST
               </h2>
               <ul tw='mt-5 space-y-8'>
@@ -249,6 +249,16 @@ export default function Home ({
                   </>
                 ))}
               </ul>
+
+              <div className='mt-5' />
+
+              <div tw='flex flex-col items-center space-y-2'>
+                <div tw='text-white bg-black p-2 rounded-full'>
+                  <ArrowRight tw='w-10 h-10'/>
+                </div>
+                <span tw='font-barlow font-light'>SEE LATEST</span>
+              </div>
+
             </Container>
           </section>
         </main>
@@ -278,7 +288,13 @@ export const getStaticProps: GetStaticProps = async () => {
     A.chain(F.flow(prop('articles'), unsafeHead, A.of))
   )
 
-  const covidArticles: Article[] = categories.health.articles.filter(isCoronaRelated)
+  const covidArticles: Article[] = F.pipe(
+    categories,
+    prop('health'),
+    prop('articles'),
+    A.filter(isCoronaRelated),
+    A.takeLeft(5)
+  )
 
   const entertainmentArticles: Article[] = F.pipe(
     categories,

@@ -18,11 +18,12 @@ export const Headline: FunctionComponent<HeadlineProps> = ({ article }) => {
           layout='fill'
           alt={article.title}
         />
-        <Filter color='purple' tw='opacity-30' />
+        <Filter color='red' tw='opacity-30' />
         <Filter color='black' tw='opacity-60' />
-        <div tw='md:px-20 px-2 relative flex items-center text-center text-white font-bold flex-col h-full justify-evenly'>
+        <div tw='md:px-20 px-2 py-20 relative flex items-center text-center text-white font-bold flex-col h-full justify-between'>
           <span tw='text-xs tracking-widest'>{article.categoryName.toUpperCase()} | FEB, 19TH</span>
           <h2 tw='text-3xl leading-normal md:(leading-none text-5xl) font-serif hover:underline'>{article.title}</h2>
+          <div />
         </div>
       </a>
     </div>

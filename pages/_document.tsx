@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&display=swap" rel="stylesheet" />
           <title>Novas</title>
         </Head>
         <body className='bg-white leading-6 tracking-tight antialiased text-black'>

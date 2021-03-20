@@ -26,6 +26,7 @@ export const ArticleTopCard: FunctionComponent<ArticleTopCardProps> = ({ article
     <div tw='flex flex-row justify-center mt-auto!' css={{ color: categoryColor }}>
       <Zig tw='stroke-current w-6 h-5' />
       <Zig tw='stroke-current w-6 h-5' />
+      <Zig tw='stroke-current w-6 h-5' />
     </div>
   </div>
 )

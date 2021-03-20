@@ -10,7 +10,7 @@ interface SectionArticleHeadlineProps {
 
 export const SectionArticleHeadline = ({ article, categoryColor }: SectionArticleHeadlineProps): JSX.Element => (
   <div
-    tw='relative h-128 w-full text-white border'
+    tw='relative h-128 w-full text-white'
     css={{ boxShadow: `0px 4px 0px ${categoryColor}`, borderColor: categoryColor }}
   >
     <a href={`/articles/${article.id}`}>

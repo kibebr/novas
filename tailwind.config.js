@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         serif: ['Domine', ...fontFamily.serif],
-        caps: 'Oswald'
+        caps: 'Oswald',
+        barlow: 'Barlow Condensed'
       },
       colors: {
         categories: {
@@ -30,6 +31,7 @@ module.exports = {
       },
       width: {
         112: '28rem',
+        120: '30rem',
         128: '32rem'
       },
       boxShadow: {
