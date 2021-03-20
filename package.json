@@ -4,16 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_OPTIONS='--insecure-http-parser' next dev",
+    "dev": "next dev",
     "next:build": "next build",
     "next:export": "next export",
-    "build": "run-s rm:tmpimages mk:tmpimages next:build next:export",
+    "build": "run-s rm:tmpimages mk:tmpimages next:build next:export --print-label",
     "rm:tmpimages": "rm -rf public/.images",
     "mk:tmpimages": "mkdir public/.images",
     "start": "next start",
     "test": "node --experimental-vm-modules node_modules/.bin/jest/"
   },
-  "author": "",
+  "author": "kibe",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.2.5",

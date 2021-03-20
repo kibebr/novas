@@ -6,9 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Domine', ...fontFamily.serif],
-        caps: 'Oswald',
-        barlow: 'Barlow Condensed'
+        serif: ['Amerigo BT', ...fontFamily.serif],
+        caps: 'Barlow Condensed'
       },
       colors: {
         categories: {

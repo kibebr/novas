@@ -18,7 +18,7 @@ export const ArticleTopCard: FunctionComponent<ArticleTopCardProps> = ({ article
       {article.categoryName.toUpperCase()}
     </span>
     <div
-      tw='pb-4 text-xl md:text-xl leading-tight text-center font-serif font-bold hover:underline'
+      tw='pb-4 text-xl md:text-xl text-center font-serif tracking-wide font-bold hover:underline'
       css={{ textDecorationColor: `${categoryColor} !important` }}
     >
       {article.title}

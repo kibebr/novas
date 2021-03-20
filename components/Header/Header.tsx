@@ -4,23 +4,21 @@ import { CategoryInfo } from '../../domain/Category'
 import { HeaderMenu } from './HeaderMenu'
 import TabsIcon from '../../public/icons/menu.svg'
 import SearchIcon from '../../public/icons/search.svg'
-import tw, { css } from 'twin.macro'
+import tw from 'twin.macro'
 
 interface HeaderProps {
-  borderColor?: string
   accentColor?: string
-  bgColor?: string
   categories: Record<string, CategoryInfo>
 }
 
-export const Header = ({ bgColor, borderColor, accentColor, categories }: HeaderProps): JSX.Element => {
+export const Header = ({ accentColor, categories }: HeaderProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
   return (
     <Container>
       <header
         tw='relative flex flex-row sticky p-2 md:(px-4 py-8) justify-between items-center border-b border-black z-50'
-        css={{ borderColor: accentColor, backgroundColor: bgColor ?? 'white' }}
+        css={{ borderColor: accentColor }}
       >
         <div tw='relative'>
           <HeaderMenu
@@ -38,8 +36,7 @@ export const Header = ({ bgColor, borderColor, accentColor, categories }: Header
         </div>
         <a href='/#' tw='flex flex-col items-center'>
           <h1
-            tw='font-medium text-5xl md:text-8xl font-caps italic bg-black text-white overflow-hidden'
-            css={{ backgroundColor: accentColor }}
+            tw='font-medium text-5xl md:text-7xl font-caps italic bg-black text-white overflow-hidden'
           >
             NOVAS
           </h1>

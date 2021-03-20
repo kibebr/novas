@@ -54,8 +54,7 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
       <main tw='min-h-screen'>
         <Container>
           <div tw='px-4'>
-
-            <div tw='mt-10'></div>
+            <div tw='mt-14'></div>
 
             <div tw='text-center'>
               <input

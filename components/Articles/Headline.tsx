@@ -6,9 +6,10 @@ import tw from 'twin.macro'
 
 interface HeadlineProps {
   article: Article
+  filterColor: string
 }
 
-export const Headline: FunctionComponent<HeadlineProps> = ({ article }) => {
+export const Headline: FunctionComponent<HeadlineProps> = ({ article, filterColor }) => {
   return (
     <div tw='relative h-128 w-full'>
       <a href={`/articles/${article.id}`}>
@@ -18,7 +19,7 @@ export const Headline: FunctionComponent<HeadlineProps> = ({ article }) => {
           layout='fill'
           alt={article.title}
         />
-        <Filter color='red' tw='opacity-30' />
+        <Filter color={filterColor} tw='opacity-30' />
         <Filter color='black' tw='opacity-60' />
         <div tw='md:px-20 px-2 py-20 relative flex items-center text-center text-white font-bold flex-col h-full justify-between'>
           <span tw='text-xs tracking-widest'>{article.categoryName.toUpperCase()} | FEB, 19TH</span>

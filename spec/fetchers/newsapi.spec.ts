@@ -1,7 +1,7 @@
 import {
   toDateText,
   deleteSourceFromTitle
-} from '../../fetchers/newsapi/utils.js'
+} from '../../fetchers/newsapi/utils'
 
 describe('NewsAPI JSON article to Article object', () => {
   it('Converts date properly', () => {
@@ -18,7 +18,7 @@ describe('NewsAPI JSON article to Article object', () => {
   it('Deletes source at the end of title', () => {
     const sample = 'Blablablabla - Fox News'
     const sample2 = 'Blablabla - Blablabla --- Blablabla - Blabla - Fox News'
-  
+
     const noSource = deleteSourceFromTitle(sample)
     const noSource2 = deleteSourceFromTitle(sample2)
 
