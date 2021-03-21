@@ -17,6 +17,9 @@ import {
 import * as F from 'fp-ts/function'
 import { normalize, schema } from 'normalizr'
 import { Lens } from 'monocle-ts'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY as string)
 

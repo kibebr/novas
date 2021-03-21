@@ -10,7 +10,10 @@ interface ArticleTopCardProps {
 }
 
 export const ArticleTopCard: FunctionComponent<ArticleTopCardProps> = ({ article, categoryColor }) => (
-  <div tw='text-center space-y-4 mx-auto flex md:max-w-xs flex-col'>
+  <a
+    href={`/articles/${article.id}`}
+    tw='text-center space-y-4 mx-auto flex md:max-w-xs flex-col'
+  >
     <span
       tw='flex justify-center text-xs tracking-wider font-bold'
       css={{ color: categoryColor }}
@@ -28,5 +31,5 @@ export const ArticleTopCard: FunctionComponent<ArticleTopCardProps> = ({ article
       <Zig tw='stroke-current w-6 h-5' />
       <Zig tw='stroke-current w-6 h-5' />
     </div>
-  </div>
+  </a>
 )

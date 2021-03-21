@@ -1,4 +1,5 @@
 import fs from 'fs/promises'
+import nodeFetch, { Response } from 'node-fetch'
 import FileType, { FileTypeResult } from 'file-type/core'
 import { map as temap, chain, tryCatch, TaskEither } from 'fp-ts/TaskEither'
 import { toError } from 'fp-ts/Either'
@@ -36,7 +37,7 @@ const toBuffer: (a: ArrayBuffer) => Buffer = Buffer.from
 
 export const downloadImage = (url: string): TaskEither<Error, DownloadedImage> => pipe(
   tryCatch(
-    pipe(url, fetch, constant),
+    pipe(url, nodeFetch, constant),
     toError
   ),
   chain(toArrayBuffer),

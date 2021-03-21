@@ -1,6 +1,11 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2017",
     "lib": [
       "dom",
       "dom.iterable",

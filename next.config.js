@@ -26,9 +26,6 @@ const nextConfig = {
 
     return config
   },
-  images: {
-    domains: ['futurism.com', '*']
-  }
 }
 
 module.exports = withNextPluginPreval(
