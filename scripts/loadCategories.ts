@@ -5,7 +5,7 @@ import { getCategoriesWithArticles } from '../fetchers/newsapi/index'
 
 (async () => {
   const categories = await getCategoriesWithArticles()()
-  getCategoriesWithArticles()()
+
   if (categories._tag === 'Left') {
     console.error('Error while trying to fetch categories:')
     throw new Error(categories.left.message)
