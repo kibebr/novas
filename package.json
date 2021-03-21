@@ -4,16 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "all": "run-s rm:tmpimages mk:tmpimages prepare store:images dev --print-label",
     "load:categories": "ts-node scripts/loadCategories.ts",
     "store:images": "ts-node scripts/storeImages.ts",
     "next:build": "next build",
     "next:export": "next export",
-    "vercel:prod": "vercel --prod",
-    "build": "run-s rm:tmpimages mk:tmpimages load:categories store:images next:build next:export --print-label",
+    "build:next": "run-s rm:tmpimages mk:tmpimages load:categories store:images next:build next:export --print-label",
     "rm:tmpimages": "rm -rf public/.images",
     "mk:tmpimages": "mkdir public/.images",
-    "start": "next start",
+    "start:next": "next start",
     "test": "node --experimental-vm-modules node_modules/.bin/jest/"
   },
   "author": "kibe",
