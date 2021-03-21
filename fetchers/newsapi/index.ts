@@ -6,8 +6,7 @@ import * as O from 'fp-ts/Option'
 import { toError } from 'fp-ts/Either'
 import { parseO } from 'fp-ts-std/URL'
 import * as R from 'fp-ts-ramda'
-import { Category, CategoryTypes } from '../../domain/Category'
-import { Article } from '../../domain/Article'
+import { Category } from '../../domain/Category'
 import {
   ApiNewsCategory,
   INewsApiArticle,

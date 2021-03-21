@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vercel dev",
     "all": "run-s rm:tmpimages mk:tmpimages prepare store:images dev --print-label",
     "load:categories": "ts-node scripts/loadCategories.ts",
     "store:images": "ts-node scripts/storeImages.ts",
