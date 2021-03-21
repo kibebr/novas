@@ -24,7 +24,10 @@ export default function Search ({ categoriesInfo }: SearchProps): JSX.Element {
   const [foundArticles, setFoundArticles] = useState<Article[]>([])
   const [searchTerm, setSearchTerm] = useState<string | null>(null)
   const [query, setQuery] = useState<string | undefined>(undefined)
-  const { data } = useSWR(`/api/articles/${encodeURIComponent(query ?? '')}`, fetch)
+  const { data } = useSWR(
+    query !== '' && query !== undefined ? `/api/articles/${encodeURIComponent(query)}` : null,
+    fetch
+  )
 
   useEffect((): void => {
     const { q } = router.query
