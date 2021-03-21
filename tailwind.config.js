@@ -12,12 +12,12 @@ module.exports = {
       colors: {
         categories: {
           black: colors.black,
-          red: colors.red[100],
-          purple: colors.purple[700],
-          blue: colors.blue[700],
-          yellow: colors.yellow[700],
-          green: colors.green[700],
-          pink: colors.pink[700]
+          red: colors.red[600],
+          purple: colors.purple[600],
+          blue: colors.blue[600],
+          yellow: colors.yellow[600],
+          green: colors.green[600],
+          pink: colors.pink[600]
         },
         black: {
           DEFAULT: '#000',

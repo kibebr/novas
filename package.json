@@ -15,7 +15,8 @@
     "mk:tmpcategories": "mkdir .tmp/",
     "mk:tmpdirs": "run-p mk:tmpimages mk:tmpcategories --print-label",
     "rm:tmpdirs": "run-p rm:tmpimages rm:tmpcategories --print-label",
-    "start:next": "next start",
+    "next:start": "next start",
+    "next:dev": "next dev",
     "test": "node --experimental-vm-modules node_modules/.bin/jest/"
   },
   "author": "kibe",

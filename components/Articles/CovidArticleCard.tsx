@@ -22,7 +22,7 @@ export const CovidArticleCard: FunctionComponent<CovidArticleCardProps> = ({ art
       <div tw='font-mono text-sm'>
         YESTERDAY
       </div>
-      <div tw='font-caps text-4xl' className='font-caps'>
+      <div tw='font-caps text-2xl md:text-4xl'>
         {article.title.toUpperCase()}
       </div>
       <a href='#' tw='font-mono text-sm hover:underline'>

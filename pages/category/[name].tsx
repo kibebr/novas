@@ -30,18 +30,17 @@ export default function CategoryComp ({ categoriesInfo, category }: CategoryProp
 
       <Container>
         <div tw='px-4'>
-          <div tw='flex flex-col space-y-8 items-center'>
-            <h1 tw='text-3xl md:text-6xl font-bold'>
+          <div tw='flex flex-col space-y-2 items-center'>
+            <h1 tw='text-5xl md:text-6xl font-bold'>
               {capitalize(category.name)}
             </h1>
-            <Zig tw='w-10 h-10 text-red-400' />
+            {/* <Zig tw='w-10 h-10 text-red-400' /> */}
+            <h2 tw='font-caps font-light text-2xl tracking-wide'>LATEST STORIES</h2>
           </div>
 
-          <div tw='h-px w-full mb-14 bg-gray-100' />
+          <div tw='h-px w-full my-14 bg-gray-100' />
 
           <section tw='flex flex-col items-center space-y-8'>
-            <h2>LATEST STORIES</h2>
-
             <ul tw='flex flex-col space-y-8'>
               {category.articles.map((a) => (
                 <li key={a.id}>

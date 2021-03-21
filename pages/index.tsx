@@ -253,7 +253,7 @@ export default function Home ({
                 ))}
               </ul>
 
-              <div className='mt-5' />
+              <div tw='mt-5' />
 
               <div tw='flex flex-col items-center space-y-2'>
                 <div tw='text-white bg-black p-2 rounded-full'>

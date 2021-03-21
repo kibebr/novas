@@ -33,7 +33,7 @@ export const ArticleCard = ({ article, categoryColor }: ArticleCardProps): JSX.E
         </span>
         <a
           href={`/articles/${article.id}`}
-          tw='block font-serif font-medium tracking-tight cursor-pointer text-lg md:(text-2xl mt-2) lg:text-3xl hover:underline'
+          tw='block font-serif font-semibold tracking-tight cursor-pointer text-lg md:(text-2xl mt-2) lg:text-3xl hover:underline'
           css={{ textDecorationColor: `${categoryColor} !important` }}
         >
           {article.title}
