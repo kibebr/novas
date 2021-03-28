@@ -155,7 +155,7 @@ export default function Home ({
                           {a.title.toUpperCase()}
                         </div>
                         <div tw='flex flex-row justify-between items-end font-light'>
-                          <span>FEB 19TH</span>
+                          <span>{a.date.toUpperCase()}</span>
                           <div tw='flex flex-col items-end'>
                             <ArrowRight tw='h-8 w-8' />
                             <span tw='text-sm'>READ MORE</span>
@@ -216,7 +216,7 @@ export default function Home ({
                           {a.title.toUpperCase()}
                         </div>
                         <div tw='flex flex-row justify-between items-end font-light'>
-                          <span>FEB 19TH</span>
+                          <span>{a.date.toUpperCase()}</span>
                           <div tw='flex flex-col items-end'>
                             <ArrowRight tw='h-8 w-8' />
                             <span tw='text-sm'>READ MORE</span>

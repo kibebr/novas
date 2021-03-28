@@ -29,7 +29,7 @@ export const ArticleCard = ({ article, categoryColor }: ArticleCardProps): JSX.E
             {article.categoryName.toUpperCase()}
           </a>
             <span tw='font-serif italic text-xs'>&nbsp; on &nbsp;</span>
-          <span tw='text-gray-700'>FEB 19TH</span>
+          <span tw='text-gray-700'>{article.date.toUpperCase()}</span>
         </span>
         <a
           href={`/articles/${article.id}`}

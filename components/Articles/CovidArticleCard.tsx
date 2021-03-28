@@ -20,7 +20,7 @@ export const CovidArticleCard: FunctionComponent<CovidArticleCardProps> = ({ art
     <Filter color='black' tw='opacity-60' />
     <div tw='w-full h-full z-50 flex flex-col justify-evenly p-2 text-white'>
       <div tw='font-mono text-sm'>
-        YESTERDAY
+        {article.date.toUpperCase()}
       </div>
       <div tw='font-caps text-2xl md:text-4xl'>
         {article.title.toUpperCase()}
