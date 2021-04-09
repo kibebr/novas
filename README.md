@@ -5,11 +5,11 @@ News website made with Next.js.
 
 ## Folder structure
 - `/domain`: this is where the core logic of app resides. It is totally devoid of infrastructure concerns
-- `/pages`: all the pages
+- `/pages`: all of Novas' pages. those are statically generated using Next.js
 - `/components`: React components used in `/pages`
 - `/fetchers`: this is the logic of fetching articles from an API resides. I am using NewsAPI but this is easily swappable
 - `/scripts`: better explained below
-- `/api`: where the API logic resides.
+- `/api`: this is the back-end of app. it's simple: it only contains an end-point that allows you to search for a certain article given a title
 
 ## Scripts
 - `loadCategories`: fetches all the categories using NewsAPI, and then saves them to a JSON file.
